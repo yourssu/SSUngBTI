@@ -63,6 +63,13 @@ const Button = {
 };
 
 export const theme = extendTheme({
+  styles: {
+    global: {
+      "html, body, #root": {
+        height: "100%",
+      },
+    },
+  },
   colors: {
     brand: "#4F5985",
   },

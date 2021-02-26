@@ -21,7 +21,7 @@ const App: FC = () => {
       direction="column"
       maxW="320px"
       m="0 auto"
-      minH="100vh"
+      minH="100%"
     >
       <Box flexGrow={1}>
         <Header mb={12} />
