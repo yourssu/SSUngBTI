@@ -55,12 +55,14 @@ const config: webpack.Configuration = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
+      favicon: "src/favicon.svg",
     }),
   ].filter(Boolean),
   devServer: {
     hot: true,
     contentBase: "dist",
     overlay: true,
+    historyApiFallback: true,
   },
   devtool: development ? "inline-source-map" : undefined,
 };
