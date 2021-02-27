@@ -1,71 +1,34 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { ClassNames } from "@emotion/react";
-import { Header } from "components";
+import { Footer, Header } from "components";
+import { AnimatePresence } from "framer-motion";
 import { About, Home, Question } from "page";
 import React, { FC } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Switch, Route } from "react-router-dom";
 
 const App: FC = () => {
-  const location = useLocation();
   return (
-    <Flex
-      left={0}
-      right={0}
-      pos="absolute"
-      direction="column"
-      w="full"
-      m="0 auto"
-      minH="100%"
-      maxW="640px"
-    >
+    <Flex direction="column" w="full" m="0 auto" minH="100%" maxW="640px">
       <Box flexGrow={1} w="full" alignSelf="center" padding="0 1em">
         <Header mb={12} />
-        <Box pos="relative">
-          <ClassNames>
-            {({ css }) => (
-              <TransitionGroup>
-                <CSSTransition
-                  key={location.pathname}
-                  classNames={{
-                    enter: css({
-                      opacity: 0,
-                      transform: "scale(1.1)",
-                    }),
-                    enterActive: css({
-                      opacity: 1,
-                      transform: "scale(1)",
-                      transition: "opacity 300ms, transform 300ms",
-                    }),
-                    exit: css({
-                      opacity: 1,
-                      transform: "scale(1)",
-                    }),
-                    exitActive: css({
-                      opacity: 0,
-                      transform: "scale(0.9)",
-                      transition: "opacity 300ms, transform 300ms",
-                    }),
-                  }}
-                  timeout={300}
-                >
-                  <Switch location={location}>
-                    <Route exact path="/about">
-                      <About pos="absolute" w="full" />
-                    </Route>
-                    <Route exact path="/question/:round">
-                      <Question pos="absolute" w="full" />
-                    </Route>
-                    <Route path="*">
-                      <Home pos="absolute" w="full" />
-                    </Route>
-                  </Switch>
-                </CSSTransition>
-              </TransitionGroup>
-            )}
-          </ClassNames>
-        </Box>
+        <Route
+          render={({ location }) => (
+            <AnimatePresence exitBeforeEnter initial={false}>
+              <Switch location={location} key={location.pathname}>
+                <Route exact path="/about">
+                  <About />
+                </Route>
+                <Route exact path="/question/:round">
+                  <Question />
+                </Route>
+                <Route path="*">
+                  <Home />
+                </Route>
+              </Switch>
+            </AnimatePresence>
+          )}
+        />
       </Box>
+      <Footer />
     </Flex>
   );
 };
