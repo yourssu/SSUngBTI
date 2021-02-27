@@ -22,7 +22,7 @@ export const Home: FC<StackProps> = props => (
       <Text fontSize="1em">{"슝슝이로 알아보는 성향테스트"}</Text>
     </Box>
     <Box w="full">
-      <Counter count={0} />
+      <Counter count={100} />
       <Image boxSize={64} objectFit="cover" m="auto" />
     </Box>
     <LinkBox as={Button} w="calc(100% - 64px)" variant="mbti_start">
