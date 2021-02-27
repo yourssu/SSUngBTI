@@ -23,7 +23,15 @@ export const About: FC<StackProps> = props => (
       </Box>
       <Box>
         <Heading size="xs">{"Web Development"}</Heading>
-        <Text size="xs">{"Elnyan"}</Text>
+
+        <Link
+          size="xs"
+          target="_blank"
+          href="https://github.com/vbalien"
+          fontWeight="normal"
+        >
+          {"Elnyan"}
+        </Link>
       </Box>
       <Box>
         <Heading size="xs">{"Contents Design"}</Heading>

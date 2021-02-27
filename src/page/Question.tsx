@@ -8,12 +8,38 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { questionVariants } from "constants/animation";
+import questions, { Question as QuestionObj } from "constants/questions";
 import { motion } from "framer-motion";
 import React, { FC } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 
+type QuestionButtonGroupProps = {
+  round: number;
+  question: QuestionObj;
+  isLast: boolean;
+};
+const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
+  question,
+  round,
+  isLast,
+}) => {
+  const nextUrl = isLast ? "/result" : `/questions/${round + 1}`;
+  return (
+    <Stack spacing={4}>
+      {question.answers.map((answer, idx) => (
+        <LinkBox key={idx} as={Button} variant="question">
+          <LinkOverlay as={RouterLink} to={nextUrl}>
+            {answer}
+          </LinkOverlay>
+        </LinkBox>
+      ))}
+    </Stack>
+  );
+};
+
 export const Question: FC<BoxProps> = props => {
   const params = useParams<{ round: string }>();
+  const round = Number.parseInt(params.round);
   return (
     <motion.div
       className="question-page"
@@ -23,20 +49,17 @@ export const Question: FC<BoxProps> = props => {
       variants={questionVariants}
     >
       <Box {...props}>
-        <Heading fontSize="1.125em" mb={2}>{`${params.round} / ${12}`}</Heading>
-        <Heading fontWeight="normal" fontSize="1.5em" mb={32}>
-          {"처음 숭실대 로고를 보고 든 생각은?"}
-        </Heading>
-        <Stack spacing={3}>
-          <LinkBox as={Button} variant="question">
-            <LinkOverlay as={RouterLink} to="/question/1">
-              Q1
-            </LinkOverlay>
-          </LinkBox>
-          <Button variant="question">Q2</Button>
-          <Button variant="question">Q3</Button>
-          <Button variant="question">Q4</Button>
-        </Stack>
+        <Box minH={48}>
+          <Heading fontSize="1.125em">{`${round} / ${questions.length}`}</Heading>
+          <Heading fontWeight="normal" fontSize="1.5em">
+            {questions[round - 1].content}
+          </Heading>
+        </Box>
+        <QuestionButtonGroup
+          question={questions[round - 1]}
+          round={round}
+          isLast={round === questions.length}
+        />
       </Box>
     </motion.div>
   );

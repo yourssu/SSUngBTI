@@ -35,7 +35,7 @@ export const Home: FC<StackProps> = props => (
         <Image boxSize={64} objectFit="cover" m="auto" />
       </Box>
       <LinkBox as={Button} w="calc(100% - 64px)" variant="mbti_start">
-        <LinkOverlay as={RouterLink} to="/question/0">
+        <LinkOverlay as={RouterLink} to="/questions/1">
           시작하기
         </LinkOverlay>
       </LinkBox>
