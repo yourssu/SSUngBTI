@@ -1,10 +1,11 @@
-import { Box, Heading, Stack, StackProps, Text } from "@chakra-ui/react";
+import { Box, Heading, Link, Stack, StackProps, Text } from "@chakra-ui/react";
+import { Footer } from "components";
 import React, { FC } from "react";
 
 export const About: FC<StackProps> = props => (
-  <Stack spacing={5} {...props}>
+  <Stack spacing={5} {...props} fontSize="0.875em">
     <Box>
-      <Heading size="sm">
+      <Heading size="xs">
         <Text as="span" color="brand">
           {"SSUngBTI"}
         </Text>
@@ -29,8 +30,24 @@ export const About: FC<StackProps> = props => (
     </Box>
     <Box>
       <Heading size="xs">{"Yourssu"}</Heading>
-      <Text size="xs">{"About us"}</Text>
-      <Text size="xs">{"Tech blog"}</Text>
+      <Link
+        size="xs"
+        target="_blank"
+        href="https://intro.yourssu.com/"
+        fontWeight="normal"
+      >
+        {"About us"}
+      </Link>
+      <br />
+      <Link
+        size="xs"
+        target="_blank"
+        href="https://blog.yourssu.com/"
+        fontWeight="normal"
+      >
+        {"Tech blog"}
+      </Link>
     </Box>
+    <Footer />
   </Stack>
 );

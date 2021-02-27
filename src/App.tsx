@@ -1,14 +1,9 @@
-import { Box, Flex, Link, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { ClassNames } from "@emotion/react";
 import { Header } from "components";
-import { About, Home } from "page";
+import { About, Home, Question } from "page";
 import React, { FC } from "react";
-import {
-  Switch,
-  Route,
-  Link as RouterLink,
-  useLocation,
-} from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const App: FC = () => {
@@ -19,11 +14,12 @@ const App: FC = () => {
       right={0}
       pos="absolute"
       direction="column"
-      maxW="320px"
+      w="full"
       m="0 auto"
       minH="100%"
+      maxW="640px"
     >
-      <Box flexGrow={1}>
+      <Box flexGrow={1} w="full" alignSelf="center" padding="0 1em">
         <Header mb={12} />
         <Box pos="relative">
           <ClassNames>
@@ -57,6 +53,9 @@ const App: FC = () => {
                     <Route exact path="/about">
                       <About pos="absolute" w="full" />
                     </Route>
+                    <Route exact path="/question/:round">
+                      <Question pos="absolute" w="full" />
+                    </Route>
                     <Route path="*">
                       <Home pos="absolute" w="full" />
                     </Route>
@@ -67,13 +66,6 @@ const App: FC = () => {
           </ClassNames>
         </Box>
       </Box>
-      <Text fontSize={10} textAlign="center" mt={12} mb={8}>
-        {"Copyright "}
-        <Link as={RouterLink} to="/about">
-          {"SSung-BTI at YOURSSU"}
-        </Link>
-        {". 2021. All rights reserved."}
-      </Text>
     </Flex>
   );
 };

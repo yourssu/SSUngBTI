@@ -16,6 +16,7 @@ const Link = {
 
 const Button = {
   baseStyle: {
+    padding: "1em",
     _focus: {
       boxShadow: "none",
     },
@@ -23,9 +24,9 @@ const Button = {
   variants: {
     question: {
       borderRadius: 10,
+      fontSize: "0.75em",
       bg: "#F1F3F5",
       color: "brand",
-      padding: 6,
       _hover: {
         bg: "brand",
         color: "white",
@@ -37,9 +38,9 @@ const Button = {
     },
     mbti_start: {
       borderRadius: 2,
+      fontSize: "1em",
       bg: "brand",
       color: "white",
-      padding: 6,
       _hover: {
         bg: "brand",
       },
@@ -49,9 +50,9 @@ const Button = {
     },
     mbti_reset: {
       borderRadius: 2,
+      fontSize: "1em",
       bg: "#F1F3F5",
       color: "brand",
-      padding: 6,
       _hover: {
         bg: "#F1F3F5",
       },
@@ -65,6 +66,9 @@ const Button = {
 export const theme = extendTheme({
   styles: {
     global: {
+      html: {
+        fontSize: ["16px", "20px", "24px"],
+      },
       "html, body, #root": {
         height: "100%",
       },

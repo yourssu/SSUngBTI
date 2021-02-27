@@ -16,6 +16,7 @@ const config: webpack.Configuration = {
   output: {
     filename: production ? "[name]-bundle-[chunkhash:8].js" : "[name].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".mjs"],
