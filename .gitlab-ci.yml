@@ -1,0 +1,13 @@
+image: node:latest
+
+pages:
+  stage: deploy
+  script:
+    - yarn
+    - yarn build
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

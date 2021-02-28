@@ -24,7 +24,6 @@ export const Counter: FC<CounterProps> = ({ count }) => {
   }, [count]);
   return (
     <Box
-      m="0 32px"
       borderRadius={20}
       bgColor="#E5E5E5"
       color="#4F5985"
