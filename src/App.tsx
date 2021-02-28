@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { Footer, Header } from "components";
 import { AnimatePresence } from "framer-motion";
-import { About, Home, Question, Result } from "page";
+import { About, Calculate, Home, Question, Result } from "page";
 import React, { FC } from "react";
 import { Switch, Route } from "react-router-dom";
 
@@ -14,18 +14,11 @@ const App: FC = () => {
           render={({ location }) => (
             <AnimatePresence exitBeforeEnter initial={false}>
               <Switch location={location} key={location.pathname}>
-                <Route exact path="/about">
-                  <About />
-                </Route>
-                <Route exact path="/questions/:round">
-                  <Question />
-                </Route>
-                <Route exact path="/result">
-                  <Result />
-                </Route>
-                <Route exact path="/">
-                  <Home />
-                </Route>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/questions/:round" component={Question} />
+                <Route exact path="/calculate" component={Calculate} />
+                <Route exact path="/result/:mbti" component={Result} />
+                <Route exact path="/about" component={About} />
               </Switch>
             </AnimatePresence>
           )}

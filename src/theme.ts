@@ -25,7 +25,7 @@ const Button = {
     question: {
       borderRadius: 10,
       fontSize: "0.75em",
-      bg: "#F1F3F5",
+      bg: "brandBG",
       color: "brand",
       _hover: {
         bg: "brand",
@@ -51,13 +51,13 @@ const Button = {
     mbti_reset: {
       borderRadius: 2,
       fontSize: "1em",
-      bg: "#F1F3F5",
+      bg: "brandBG",
       color: "brand",
       _hover: {
-        bg: "#F1F3F5",
+        bg: "brandBG",
       },
       _active: {
-        bg: "#F1F3F5",
+        bg: "brandBG",
       },
     },
   },
@@ -76,6 +76,7 @@ export const theme = extendTheme({
   },
   colors: {
     brand: "#4F5985",
+    brandBG: "#F1F3F5",
   },
   components: { Button, Link },
 });

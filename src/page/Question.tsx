@@ -23,7 +23,7 @@ const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
   round,
   isLast,
 }) => {
-  const nextUrl = isLast ? "/result" : `/questions/${round + 1}`;
+  const nextUrl = isLast ? "/calculate" : `/questions/${round + 1}`;
   return (
     <Stack spacing={4}>
       {question.answers.map((answer, idx) => (
