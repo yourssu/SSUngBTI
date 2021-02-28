@@ -6,6 +6,9 @@ pages:
     - yarn
     - yarn build
     - mv dist public
+  variables:
+    PUBLIC_PATH: https://yourssu.gitlab.io/ssungbti
+    BASE_NAME: /ssungbti
   artifacts:
     paths:
       - public
