@@ -68,6 +68,8 @@ export const theme = extendTheme({
     global: {
       html: {
         fontSize: ["16px", "20px", "24px"],
+        userSelect: "none",
+        "-webkit-tap-highlight-color": "transparent",
       },
       "html, body, #root": {
         height: "100%",
