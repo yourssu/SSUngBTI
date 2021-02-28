@@ -3,11 +3,17 @@ import { pageVariants, spinTransition } from "constants/animation";
 import { motion } from "framer-motion";
 import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import UserMbtiState from "store/UserMbtiState";
 
 export const Calculate: FC = () => {
   const history = useHistory();
+  const mbti = useRecoilValue(UserMbtiState);
   useEffect(() => {
-    const timeout = setTimeout(() => history.push("/result/intj"), 2000);
+    const timeout = setTimeout(
+      () => history.push(`result/${mbti.join("")}`),
+      2000
+    );
     return () => clearTimeout(timeout);
   }, []);
 

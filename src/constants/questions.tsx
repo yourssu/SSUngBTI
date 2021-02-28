@@ -1,22 +1,18 @@
 import { Text } from "@chakra-ui/react";
+import { MbtiAtom } from "store/UserMbtiState";
 
-export enum QuestionType {
-  EI = "EI",
-  SN = "SN",
-  FT = "FT",
-  PJ = "PJ",
-}
+export type QuestionType = "EI" | "SN" | "TF" | "PJ";
 
 export interface Question {
   content: JSX.Element | string;
-  kind: QuestionType;
+  kind: [MbtiAtom, MbtiAtom];
   answers: [string, string, string, string];
 }
 
 const questions: Question[] = [
   {
     // 1
-    kind: QuestionType.SN,
+    kind: ["S", "N"],
     content: "처음 숭실대 로고를 보고 든 생각은?",
     answers: [
       "그냥 아무 생각이 없다",
@@ -27,7 +23,7 @@ const questions: Question[] = [
   },
   {
     // 2
-    kind: QuestionType.EI,
+    kind: ["E", "I"],
     content: "새터 전날 밤에 당신은?",
     answers: [
       "새내기 단톡방에서 이미 대학교 친구들과 연락하고 있다",
@@ -38,7 +34,7 @@ const questions: Question[] = [
   },
   {
     // 3
-    kind: QuestionType.EI,
+    kind: ["E", "I"],
     content: "새터날 버스 안 처음 만난 친구에게 당신은?",
     answers: [
       `이름부터 물어본다 "혹시 이름이 뭐야?"`,
@@ -49,7 +45,7 @@ const questions: Question[] = [
   },
   {
     // 4
-    kind: QuestionType.PJ,
+    kind: ["P", "J"],
     content: "과제를 진행할 때 당신의 모습은?",
     answers: [
       "유튜브는 재밌다~ ㅎㅎ 과제는 내일부터!",
@@ -60,10 +56,10 @@ const questions: Question[] = [
   },
   {
     // 5
-    kind: QuestionType.SN,
+    kind: ["S", "N"],
     content: (
       <>
-        <Text fontSize="lg">{`"백마는 분홍색이에요. 중요하니 꼭 외워두세요"`}</Text>
+        <Text fontSize="1rem">{`"백마는 분홍색이에요. 중요하니 꼭 외워두세요"`}</Text>
         {" 교수님 말씀에 당신은?"}
       </>
     ),
@@ -76,7 +72,7 @@ const questions: Question[] = [
   },
   {
     // 6
-    kind: QuestionType.PJ,
+    kind: ["P", "J"],
     content: "수업 끝나고 당신이 할 일은?",
     answers: [
       "오늘 일정? 그런 거 몰라 숨쉬기~!",
@@ -87,10 +83,10 @@ const questions: Question[] = [
   },
   {
     // 7
-    kind: QuestionType.FT,
+    kind: ["T", "F"],
     content: (
       <>
-        <Text fontSize="lg">
+        <Text fontSize="1rem">
           {"돌계에서 노을을 보고 있던 친구가 내 생각이 났다며 카톡이 왔다"}
         </Text>
         {"가장 먼저 든 생각은?"}
@@ -105,7 +101,7 @@ const questions: Question[] = [
   },
   {
     // 8
-    kind: QuestionType.FT,
+    kind: ["T", "F"],
     content: "팀플에서 팀원이 과제를 대충 해 왔을 때 당신은?",
     answers: [
       "말하는 시간도 아까우므로 내가 한다",
@@ -116,7 +112,7 @@ const questions: Question[] = [
   },
   {
     // 9
-    kind: QuestionType.FT,
+    kind: ["T", "F"],
     content: "친구들이 보는 당신은?",
     answers: [
       "추진력 있는 사람",
@@ -127,7 +123,7 @@ const questions: Question[] = [
   },
   {
     // 10
-    kind: QuestionType.EI,
+    kind: ["E", "I"],
     content: "방학 때 주로 당신은?",
     answers: [
       "아직도 못 만난 친구들이 너무 많아 매일 약속이 차있다",
@@ -138,7 +134,7 @@ const questions: Question[] = [
   },
   {
     // 11
-    kind: QuestionType.SN,
+    kind: ["S", "N"],
     content: "친구의 생일선물 어떤 것을 사줄까?",
     answers: [
       "인기 순위에 있는 선물",
@@ -149,7 +145,7 @@ const questions: Question[] = [
   },
   {
     // 12
-    kind: QuestionType.PJ,
+    kind: ["P", "J"],
     content: "당신이 시간표를 짜는 기간은?",
     answers: [
       "친구가 시간표 짰냐고 물어봤을 때",

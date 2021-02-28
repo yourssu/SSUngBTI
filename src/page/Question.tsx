@@ -10,8 +10,10 @@ import {
 import { questionVariants } from "constants/animation";
 import questions, { Question as QuestionObj } from "constants/questions";
 import { motion } from "framer-motion";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import UserAnswerState from "store/UserAnswerState";
 
 type QuestionButtonGroupProps = {
   round: number;
@@ -24,10 +26,26 @@ const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
   isLast,
 }) => {
   const nextUrl = isLast ? "/calculate" : `/questions/${round + 1}`;
+  const [userAnswer, setUserAnswer] = useRecoilState(UserAnswerState);
+  const updateAnswer = useCallback(
+    (idx: number) => {
+      return () => {
+        const newArray = userAnswer.slice();
+        newArray.splice(round - 1, 1, idx);
+        setUserAnswer(newArray);
+      };
+    },
+    [userAnswer]
+  );
   return (
     <Stack spacing={4}>
       {question.answers.map((answer, idx) => (
-        <LinkBox key={idx} as={Button} variant="question">
+        <LinkBox
+          key={idx}
+          as={Button}
+          variant="question"
+          onClick={updateAnswer(idx)}
+        >
           <LinkOverlay as={RouterLink} to={nextUrl}>
             {answer}
           </LinkOverlay>
