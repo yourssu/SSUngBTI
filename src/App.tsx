@@ -14,11 +14,21 @@ const App: FC = () => {
           render={({ location }) => (
             <AnimatePresence exitBeforeEnter initial={false}>
               <Switch location={location} key={location.pathname}>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/questions/:round" component={Question} />
-                <Route exact path="/calculate" component={Calculate} />
-                <Route exact path="/result/:mbti" component={Result} />
-                <Route exact path="/about" component={About} />
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/questions/:round">
+                  <Question />
+                </Route>
+                <Route exact path="/calculate">
+                  <Calculate />
+                </Route>
+                <Route exact path="/result/:mbti">
+                  <Result />
+                </Route>
+                <Route exact path="/about">
+                  <About />
+                </Route>
               </Switch>
             </AnimatePresence>
           )}

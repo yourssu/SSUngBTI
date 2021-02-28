@@ -12,33 +12,52 @@ import {
 import { Counter } from "components";
 import { pageVariants } from "constants/animation";
 import { motion } from "framer-motion";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { appData, incrementCount } from "repo";
+import CountState from "store/CountState";
 
-export const Home: FC<StackProps> = props => (
-  <motion.div
-    className="home-page"
-    initial="exit"
-    animate="enter"
-    exit="exit"
-    variants={pageVariants}
-  >
-    <Stack alignItems="center" spacing={10} {...props}>
-      <Box textAlign="center">
-        <Heading as="h1" fontSize="2em">
-          {"슝슝이 테스트"}
-        </Heading>
-        <Text fontSize="1em">{"슝슝이로 알아보는 성향테스트"}</Text>
-      </Box>
-      <Box w="full">
-        <Counter count={100} />
-        <Image boxSize={64} objectFit="cover" m="auto" />
-      </Box>
-      <LinkBox as={Button} w="calc(100% - 64px)" variant="mbti_start">
-        <LinkOverlay as={RouterLink} to="/questions/1">
-          시작하기
-        </LinkOverlay>
-      </LinkBox>
-    </Stack>
-  </motion.div>
-);
+export const Home: FC<StackProps> = props => {
+  const [count, setCount] = useRecoilState(CountState);
+
+  useEffect(() => {
+    const unsubscribe = appData.onSnapshot(doc => {
+      setCount(doc.get("count"));
+    });
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <motion.div
+      className="home-page"
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      variants={pageVariants}
+    >
+      <Stack alignItems="center" spacing={10} {...props}>
+        <Box textAlign="center">
+          <Heading as="h1" fontSize="2em">
+            {"슝슝이 테스트"}
+          </Heading>
+          <Text fontSize="1em">{"슝슝이로 알아보는 성향테스트"}</Text>
+        </Box>
+        <Box w="full">
+          <Counter count={count} />
+          <Image boxSize={64} objectFit="cover" m="auto" />
+        </Box>
+        <LinkBox
+          as={Button}
+          w="calc(100% - 64px)"
+          variant="mbti_start"
+          onClick={() => incrementCount()}
+        >
+          <LinkOverlay as={RouterLink} to="/questions/1">
+            시작하기
+          </LinkOverlay>
+        </LinkBox>
+      </Stack>
+    </motion.div>
+  );
+};

@@ -20,19 +20,17 @@ export const Calculate: FC = () => {
       variants={pageVariants}
     >
       <Stack justifyContent="center" alignItems="center">
-        <Box pos="relative">
-          <motion.div animate={{ rotate: 360 }} transition={spinTransition}>
-            <Box
-              w="3em"
-              h="3em"
-              borderWidth="0.5rem"
-              borderColor="brandBG"
-              borderTopWidth="0.5rem"
-              borderTopColor="brand"
-              borderRadius="50%"
-            />
-          </motion.div>
-        </Box>
+        <motion.div animate={{ rotate: 360 }} transition={spinTransition}>
+          <Box
+            w="3em"
+            h="3em"
+            borderWidth="0.5rem"
+            borderColor="brandBG"
+            borderTopWidth="0.5rem"
+            borderTopColor="brand"
+            borderRadius="50%"
+          />
+        </motion.div>
         <Box>{"계산중..."}</Box>
       </Stack>
     </motion.div>
