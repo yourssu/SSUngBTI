@@ -1,16 +1,25 @@
 image: node:latest
 
-pages:
-  stage: deploy
+stages:
+  - build
+  - deploy
+cache:
+  paths:
+    - node_modules/
+build:
+  stage: build
   script:
     - yarn
     - yarn build
-    - mv dist public
-  variables:
-    PUBLIC_PATH: https://yourssu.gitlab.io/ssungbti
-    BASE_NAME: /ssungbti
   artifacts:
     paths:
-      - public
+      - dist
+
+deploy:
+  image: python:latest
+  stage: deploy
+  script:
+    - pip install awscli
+    - aws s3 sync dist s3://ssungbti.yourssu.com
   only:
     - master

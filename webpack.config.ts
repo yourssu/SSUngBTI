@@ -5,6 +5,7 @@ import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import webpack, { DefinePlugin } from "webpack";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const production = process.env.NODE_ENV === "production";
 const development =
@@ -51,6 +52,7 @@ const config: webpack.Configuration = {
         BASE_NAME: JSON.stringify(process.env.BASE_NAME ?? "/"),
       },
     }),
+    new CopyWebpackPlugin({ patterns: [{ from: "src/static" }] }),
     new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
@@ -61,7 +63,6 @@ const config: webpack.Configuration = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      favicon: "src/favicon.svg",
     }),
   ].filter(Boolean),
   devServer: {
