@@ -16,10 +16,9 @@ build:
       - dist
 
 deploy:
-  image: python:latest
+  image: amazon/aws-cli:latest
   stage: deploy
   script:
-    - pip install awscli
-    - aws s3 sync dist s3://ssungbti.yourssu.com
+    - aws s3 sync dist s3://$S3_BUCKET_NAME
   only:
     - master

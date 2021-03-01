@@ -52,7 +52,7 @@ export const Home: FC<StackProps> = props => {
           onClick={() => incrementCount()}
         >
           <LinkOverlay as={RouterLink} to="/questions/1">
-            시작하기
+            {"시작하기"}
           </LinkOverlay>
         </LinkBox>
       </Stack>
