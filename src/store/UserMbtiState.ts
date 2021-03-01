@@ -1,11 +1,12 @@
-import { MbtiAtom, MbtiResult } from "constants/mbti";
+import { EI, MbtiAtom, PJ, SN, TF } from "constants/mbti";
 import questions from "constants/questions";
 import { selector } from "recoil";
 import UserAnswerState from "./UserAnswerState";
 
 type MbtiCount = Map<MbtiAtom, number>;
 
-const UserMbtiState = selector<MbtiResult>({
+export type UserMbtiResult = [EI, SN, TF, PJ];
+const UserMbtiState = selector<UserMbtiResult>({
   key: "UserMbtiState",
   get: ({ get }) => {
     const userAnswer = get(UserAnswerState);

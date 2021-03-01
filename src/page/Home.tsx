@@ -34,7 +34,7 @@ export const Home: FC<StackProps> = props => {
       exit="exit"
       variants={pageVariants}
     >
-      <Stack alignItems="center" spacing={10} p="0 1em" {...props}>
+      <Stack alignItems="center" spacing={10} p="0 2em" {...props}>
         <Box textAlign="center">
           <Heading as="h1" fontSize="2em">
             {"슝슝이 테스트"}

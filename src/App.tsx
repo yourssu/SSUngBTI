@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { Footer, Header } from "components";
-import { AvailableMbtiResults } from "constants/mbti";
+import { mbtiResults } from "constants/mbti";
 import questions from "constants/questions";
 import { ConditionRoute } from "containers/ConditionRoute";
 import { AnimatePresence } from "framer-motion";
@@ -24,11 +24,11 @@ const App: FC = () => {
     [userAnswer]
   );
   const checkResultPage = ({ match }: RouteComponentProps<{ mbti: string }>) =>
-    AvailableMbtiResults.includes(match.params.mbti.toUpperCase());
+    mbtiResults.some(r => r.id === match.params.mbti.toUpperCase());
 
   return (
     <Flex direction="column" w="full" m="0 auto" minH="100%" maxW="640px">
-      <Box flexGrow={1} w="full" alignSelf="center" padding="0 1em">
+      <Box flexGrow={1} w="full" alignSelf="center">
         <Header mb={12} />
         <Route
           render={({ location }) => (

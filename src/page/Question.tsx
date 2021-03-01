@@ -66,7 +66,7 @@ export const Question: FC<BoxProps> = props => {
       exit="exit"
       variants={questionVariants}
     >
-      <Box {...props}>
+      <Box p="0 1em" {...props}>
         <Box minH={48}>
           <Heading fontSize="1.125em">{`${round} / ${questions.length}`}</Heading>
           <Heading fontWeight="normal" fontSize="1.5em">
