@@ -1,5 +1,5 @@
 import { Box, Stack } from "@chakra-ui/react";
-import { pageVariants, spinTransition } from "constants/animation";
+import { pageVariants, infinityTransition } from "constants/animation";
 import { motion } from "framer-motion";
 import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
@@ -26,7 +26,7 @@ export const Calculate: FC = () => {
       variants={pageVariants}
     >
       <Stack justifyContent="center" alignItems="center">
-        <motion.div animate={{ rotate: 360 }} transition={spinTransition}>
+        <motion.div animate={{ rotate: 360 }} transition={infinityTransition}>
           <Box
             w="3em"
             h="3em"

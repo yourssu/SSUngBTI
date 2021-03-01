@@ -1,8 +1,8 @@
-import { Variants } from "framer-motion";
+import { TargetAndTransition, Variants } from "framer-motion";
 
 export const defaultTransition = { duration: 0.2, ease: "easeInOut" };
 
-export const spinTransition = {
+export const infinityTransition = {
   loop: Infinity,
   ease: "linear",
   duration: 1,
@@ -12,6 +12,15 @@ export const pageVariants: Variants = {
   initial: { opacity: 0 },
   enter: { opacity: 1, transition: defaultTransition, scale: 1 },
   exit: { opacity: 0, transition: defaultTransition, scale: 0.9 },
+};
+
+export const shakeAnimation: TargetAndTransition = {
+  rotate: [0, 5, -10, 10, -10, 10, -10, 5, 0],
+  x: [0, 5, -10, 10, -10, 10, -10, 5, 0].map(x => x * 0.2),
+  transition: {
+    duration: 0.7,
+    ease: [0.36, 0.07, 0.19, 0.97],
+  },
 };
 
 export const questionVariants: Variants = {
