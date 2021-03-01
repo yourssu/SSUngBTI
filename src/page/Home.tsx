@@ -12,14 +12,12 @@ import {
 import { Counter } from "components";
 import { pageVariants } from "constants/animation";
 import { motion } from "framer-motion";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import { appData, incrementCount } from "repo";
-import CountState from "store/CountState";
 
 export const Home: FC<StackProps> = props => {
-  const [count, setCount] = useRecoilState(CountState);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const unsubscribe = appData.onSnapshot(doc => {
