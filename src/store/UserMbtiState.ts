@@ -1,14 +1,9 @@
+import { MbtiAtom, MbtiResult } from "constants/mbti";
 import questions from "constants/questions";
 import { selector } from "recoil";
 import UserAnswerState from "./UserAnswerState";
 
-type EI = "E" | "I";
-type SN = "S" | "N";
-type TF = "T" | "F";
-type PJ = "P" | "J";
-export type MbtiAtom = EI | SN | TF | PJ;
 type MbtiCount = Map<MbtiAtom, number>;
-export type MbtiResult = [EI, SN, TF, PJ];
 
 const UserMbtiState = selector<MbtiResult>({
   key: "UserMbtiState",

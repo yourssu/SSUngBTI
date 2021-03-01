@@ -1,7 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import { MbtiAtom } from "store/UserMbtiState";
-
-export type QuestionType = "EI" | "SN" | "TF" | "PJ";
+import { MbtiAtom } from "constants/mbti";
 
 export interface Question {
   content: JSX.Element | string;
