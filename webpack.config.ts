@@ -6,6 +6,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import webpack, { DefinePlugin } from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import { mbtiResults } from "./src/constants/mbti";
 
 const production = process.env.NODE_ENV === "production";
 const development =
@@ -63,7 +64,22 @@ const config: webpack.Configuration = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
+      title: "슝슝이 테스트",
+      description: "슝슝이로 알아보는 성향 테스트",
+      image: "https://ssungbti.yourssu.com/img/INTJ.png",
+      url: "https://ssungbti.yourssu.com/",
     }),
+    ...mbtiResults.map(
+      mbti =>
+        new HtmlWebpackPlugin({
+          template: "src/index.html",
+          filename: `result/${mbti.id}/index.html`,
+          title: "슝슝이 테스트",
+          description: `${mbti.subtitle} ${mbti.title}`,
+          image: `https://ssungbti.yourssu.com/img/${mbti.id}.png`,
+          url: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
+        })
+    ),
   ].filter(Boolean),
   devServer: {
     hot: true,
