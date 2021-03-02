@@ -42,7 +42,9 @@ export default function useShare({
 
       async shareToClipboard() {
         try {
-          await navigator.clipboard?.writeText(requestUrl);
+          if (navigator.clipboard)
+            await navigator.clipboard.writeText(requestUrl);
+          else throw new Error("클립보드를 사용할 수 없습니다.");
           alert("URL이 복사되었습니다.");
         } catch (err) {
           alert("오류\n" + err.message);
