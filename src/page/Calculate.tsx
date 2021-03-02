@@ -11,34 +11,34 @@ export const Calculate: FC = () => {
   const mbti = useRecoilValue(UserMbtiState);
   useEffect(() => {
     const timeout = setTimeout(
-      () => history.push(`result/${mbti.join("")}`),
+      () => history.push(`result/${mbti.join("")}/`),
       2000
     );
     return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <motion.div
-      className="calculate-page"
+    <Stack
+      as={motion.div}
       initial="exit"
       animate="enter"
       exit="exit"
       variants={pageVariants}
+      justifyContent="center"
+      alignItems="center"
     >
-      <Stack justifyContent="center" alignItems="center">
-        <motion.div animate={{ rotate: 360 }} transition={infinityTransition}>
-          <Box
-            w="3em"
-            h="3em"
-            borderWidth="0.5rem"
-            borderColor="brandBG"
-            borderTopWidth="0.5rem"
-            borderTopColor="brand"
-            borderRadius="50%"
-          />
-        </motion.div>
-        <Box>{"계산중..."}</Box>
-      </Stack>
-    </motion.div>
+      <motion.div animate={{ rotate: 360 }} transition={infinityTransition}>
+        <Box
+          w="3em"
+          h="3em"
+          borderWidth="0.5rem"
+          borderColor="brandBG"
+          borderTopWidth="0.5rem"
+          borderTopColor="brand"
+          borderRadius="50%"
+        />
+      </motion.div>
+      <Box>{"계산중..."}</Box>
+    </Stack>
   );
 };

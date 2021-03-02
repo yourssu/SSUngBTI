@@ -17,7 +17,7 @@ import useMbtiResult from "hooks/useMbtiResult";
 import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
 import React, { FC } from "react";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const AnimatedImage: FC<ImageProps> = props => (
   <Box bgColor="white" overflow="hidden">
@@ -50,13 +50,13 @@ const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => (
 export const Result: FC = () => {
   const mbti = useMbtiResult();
   const { shareToKakao, shareToFacebook, shareToClipboard } = useShare({
-    KakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
+    kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
     facebookAppID: "1646991318648798",
-    requestUrl: `https://ssungbti.yourssu.com/result/${mbti.id}`,
+    requestUrl: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
   });
   return (
-    <motion.div
-      className="result-page"
+    <Box
+      as={motion.div}
       initial="exit"
       animate="enter"
       exit="exit"
@@ -128,6 +128,6 @@ export const Result: FC = () => {
           </Box>
         </Stack>
       </AnimatePresence>
-    </motion.div>
+    </Box>
   );
 };

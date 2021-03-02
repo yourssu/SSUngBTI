@@ -59,26 +59,26 @@ export const Question: FC<BoxProps> = props => {
   const params = useParams<{ round: string }>();
   const round = Number.parseInt(params.round);
   return (
-    <motion.div
-      className="question-page"
+    <Box
+      as={motion.div}
       initial="enter"
       animate="center"
       exit="exit"
       variants={questionVariants}
+      p="0 1em"
+      {...props}
     >
-      <Box p="0 1em" {...props}>
-        <Box minH={48}>
-          <Heading fontSize="1.125em">{`${round} / ${questions.length}`}</Heading>
-          <Heading fontWeight="normal" fontSize="1.5em">
-            {questions[round - 1].content}
-          </Heading>
-        </Box>
-        <QuestionButtonGroup
-          question={questions[round - 1]}
-          round={round}
-          isLast={round === questions.length}
-        />
+      <Box minH={48}>
+        <Heading fontSize="1.125em">{`${round} / ${questions.length}`}</Heading>
+        <Heading fontWeight="normal" fontSize="1.5em">
+          {questions[round - 1].content}
+        </Heading>
       </Box>
-    </motion.div>
+      <QuestionButtonGroup
+        question={questions[round - 1]}
+        round={round}
+        isLast={round === questions.length}
+      />
+    </Box>
   );
 };

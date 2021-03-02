@@ -7,18 +7,18 @@ type UseShareResult = {
 };
 type UseShareProps = {
   requestUrl: string;
-  KakaoAppKey: string;
+  kakaoAppKey: string;
   facebookAppID: string;
 };
 export default function useShare({
   requestUrl,
-  KakaoAppKey,
+  kakaoAppKey,
   facebookAppID,
 }: UseShareProps): UseShareResult {
   useEffect(() => {
-    if (!window.Kakao.isInitialized()) window.Kakao.init(KakaoAppKey);
+    if (!window.Kakao.isInitialized()) window.Kakao.init(kakaoAppKey);
     return () => window.Kakao.cleanup();
-  }, [KakaoAppKey]);
+  }, [kakaoAppKey]);
 
   return useMemo(
     () => ({

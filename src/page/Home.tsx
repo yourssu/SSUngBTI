@@ -27,35 +27,37 @@ export const Home: FC<StackProps> = props => {
   }, []);
 
   return (
-    <motion.div
-      className="home-page"
+    <Stack
+      as={motion.div}
       initial="exit"
       animate="enter"
       exit="exit"
       variants={pageVariants}
+      alignItems="center"
+      spacing={10}
+      p="0 2em"
+      {...props}
     >
-      <Stack alignItems="center" spacing={10} p="0 2em" {...props}>
-        <Box textAlign="center">
-          <Heading as="h1" fontSize="2em">
-            {"슝슝이 테스트"}
-          </Heading>
-          <Text fontSize="1em">{"슝슝이로 알아보는 성향테스트"}</Text>
-        </Box>
-        <Box w="full">
-          <Counter count={count} />
-          <Image boxSize={64} objectFit="cover" m="auto" />
-        </Box>
-        <LinkBox
-          as={Button}
-          w="full"
-          variant="mbti_start"
-          onClick={() => incrementCount()}
-        >
-          <LinkOverlay as={RouterLink} to="/questions/1">
-            {"시작하기"}
-          </LinkOverlay>
-        </LinkBox>
-      </Stack>
-    </motion.div>
+      <Box textAlign="center">
+        <Heading as="h1" fontSize="2em">
+          {"슝슝이 테스트"}
+        </Heading>
+        <Text fontSize="1em">{"슝슝이로 알아보는 성향테스트"}</Text>
+      </Box>
+      <Box w="full">
+        <Counter count={count} />
+        <Image boxSize={64} objectFit="cover" m="auto" />
+      </Box>
+      <LinkBox
+        as={Button}
+        w="full"
+        variant="mbti_start"
+        onClick={() => incrementCount()}
+      >
+        <LinkOverlay as={RouterLink} to="/questions/1">
+          {"시작하기"}
+        </LinkOverlay>
+      </LinkBox>
+    </Stack>
   );
 };

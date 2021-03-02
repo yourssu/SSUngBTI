@@ -55,7 +55,7 @@ const App: FC = () => {
                 </ConditionRoute>
                 <ConditionRoute
                   exact
-                  path="/result/:mbti"
+                  path="/result/:mbti/"
                   condition={checkResultPage}
                   failed={<Redirect to="/" />}
                 >
