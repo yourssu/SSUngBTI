@@ -12,6 +12,7 @@ export const About: FC<StackProps> = props => (
     variants={pageVariants}
     spacing={5}
     fontSize="0.875em"
+    p="0 2rem"
     {...props}
   >
     <Box>
