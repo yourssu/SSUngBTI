@@ -27,6 +27,7 @@ const Button = {
       fontSize: "0.75em",
       bg: "brandBG",
       color: "brand",
+      transitionDuration: "0s",
       _active: {
         bg: "brand",
         color: "white",
