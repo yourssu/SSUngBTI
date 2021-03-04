@@ -27,10 +27,6 @@ const Button = {
       fontSize: "0.75em",
       bg: "brandBG",
       color: "brand",
-      _hover: {
-        bg: "brand",
-        color: "white",
-      },
       _active: {
         bg: "brand",
         color: "white",
