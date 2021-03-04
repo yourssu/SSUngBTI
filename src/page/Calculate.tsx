@@ -1,7 +1,7 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { pageVariants, infinityTransition } from "constants/animation";
-import { mbtiResults } from "constants/mbti";
 import { motion } from "framer-motion";
+import useMbtiResult from "hooks/useMbtiResult";
 import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -9,8 +9,8 @@ import UserMbtiState from "store/UserMbtiState";
 
 export const Calculate: FC = () => {
   const history = useHistory();
-  const mbti = useRecoilValue(UserMbtiState).join("").toUpperCase();
-  const mbtiResult = mbtiResults.find(r => r.id === mbti);
+  const mbti = useRecoilValue(UserMbtiState).join("");
+  const mbtiResult = useMbtiResult(mbti);
 
   useEffect(() => {
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.id}.png`;

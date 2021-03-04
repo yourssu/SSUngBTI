@@ -1,8 +1,7 @@
 import { MbtiResult, mbtiResults } from "constants/mbti";
-import { useParams } from "react-router-dom";
+import { useMemo } from "react";
 
-export default function useMbtiResult(): MbtiResult {
-  const params = useParams<{ mbti: string }>();
-  const mbti = params.mbti.toUpperCase();
-  return mbtiResults.find(r => r.id === mbti);
+export default function useMbtiResult(mbti: string): MbtiResult {
+  mbti = mbti.toUpperCase();
+  return useMemo(() => mbtiResults.find(r => r.id === mbti), [mbti]);
 }

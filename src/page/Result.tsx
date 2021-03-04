@@ -17,7 +17,7 @@ import useMbtiResult from "hooks/useMbtiResult";
 import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
 import React, { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
 
 const AnimatedImage: FC<ImageProps> = props => (
   <Box bgColor="white" overflow="hidden">
@@ -48,7 +48,8 @@ const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => (
 );
 
 export const Result: FC = () => {
-  const mbti = useMbtiResult();
+  const params = useParams<{ mbti: string }>();
+  const mbti = useMbtiResult(params.mbti);
   const { shareToKakao, shareToFacebook, shareToClipboard } = useShare({
     kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
     facebookAppID: "1646991318648798",
