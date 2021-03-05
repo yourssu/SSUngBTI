@@ -66,7 +66,7 @@ const config: webpack.Configuration = {
       template: "src/index.html",
       title: "슝슝이 테스트",
       description: "슝슝이로 알아보는 성향 테스트",
-      image: "https://ssungbti.yourssu.com/img/INTJ.png",
+      image: "https://ssungbti.yourssu.com/img/open.png",
       url: "https://ssungbti.yourssu.com/",
     }),
     ...mbtiResults.map(

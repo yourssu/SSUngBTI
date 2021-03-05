@@ -3,13 +3,12 @@ import {
   Button,
   Heading,
   HStack,
-  Image,
-  ImageProps,
   LinkBox,
   LinkOverlay,
   Stack,
   Text,
 } from "@chakra-ui/react";
+import AnimatedImage from "components/AnimatedImage";
 import { pageVariants, shakeAnimation } from "constants/animation";
 import { mbtiResults, MbtiType } from "constants/mbti";
 import { AnimatePresence, motion } from "framer-motion";
@@ -18,22 +17,6 @@ import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
 import React, { FC } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
-
-const AnimatedImage: FC<ImageProps> = props => (
-  <Box bgColor="white" overflow="hidden">
-    <motion.div
-      initial={{ rotate: -2 }}
-      animate={{ rotate: 2 }}
-      transition={{
-        duration: 1,
-        repeat: Infinity,
-        repeatType: "reverse",
-      }}
-    >
-      <Image {...props} />
-    </motion.div>
-  </Box>
-);
 
 type CompatibilityBoxProps = {
   mbtiId: MbtiType;

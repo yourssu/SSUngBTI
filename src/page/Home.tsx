@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Heading,
-  Image,
   LinkBox,
   LinkOverlay,
   Stack,
@@ -10,21 +9,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Counter } from "components";
+import AnimatedImage from "components/AnimatedImage";
 import { pageVariants } from "constants/animation";
-import { motion } from "framer-motion";
-import React, { FC, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import useAppCount from "hooks/useAppCount";
+import React, { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { appData, incrementCount } from "repo";
+import { incrementCount } from "repo";
 
 export const Home: FC<StackProps> = props => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const unsubscribe = appData.onSnapshot(doc => {
-      setCount(doc.get("count"));
-    });
-    return () => unsubscribe();
-  }, []);
+  const count = useAppCount();
 
   return (
     <Stack
@@ -46,7 +40,14 @@ export const Home: FC<StackProps> = props => {
       </Box>
       <Box w="full">
         <Counter count={count} />
-        <Image boxSize={64} objectFit="cover" m="auto" />
+        <AnimatePresence initial={true}>
+          <AnimatedImage
+            src={`${process.env.BASE_NAME}img/open.png`}
+            boxSize={64}
+            objectFit="cover"
+            m="auto"
+          />
+        </AnimatePresence>
       </Box>
       <LinkBox
         as={Button}
