@@ -1,22 +1,32 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { pageVariants, infinityTransition } from "constants/animation";
+import firebase from "firebase";
 import { motion } from "framer-motion";
 import useMbtiResult from "hooks/useMbtiResult";
 import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import UserAnswerState from "store/UserAnswerState";
 import UserMbtiState from "store/UserMbtiState";
 
 export const Calculate: FC = () => {
   const history = useHistory();
   const mbti = useRecoilValue(UserMbtiState).join("");
   const mbtiResult = useMbtiResult(mbti);
+  const userAnswers = useRecoilValue(UserAnswerState);
 
   useEffect(() => {
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.id}.png`;
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[0]}.png`;
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[1]}.png`;
-    const timeout = setTimeout(() => history.push(`result/${mbti}/`), 2000);
+    const timeout = setTimeout(() => {
+      const analytics = firebase.analytics();
+      analytics.setUserProperties({ mbti });
+      userAnswers.forEach((answer, idx) =>
+        analytics.logEvent("selected_answer", { question: idx + 1, answer })
+      );
+      history.push(`result/${mbti}/`);
+    }, 2000);
     return () => clearTimeout(timeout);
   }, []);
 

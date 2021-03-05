@@ -27,15 +27,13 @@ const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
 }) => {
   const nextUrl = isLast ? "/calculate" : `/questions/${round + 1}`;
   const [userAnswer, setUserAnswer] = useRecoilState(UserAnswerState);
-  const updateAnswer = useCallback(
-    (idx: number) => {
-      return () => {
-        const newArray = userAnswer.slice();
-        newArray.splice(round - 1, 1, idx);
-        setUserAnswer(newArray);
-      };
+  const setAnswer = useCallback(
+    (idx: number) => () => {
+      const newArray = userAnswer.slice();
+      newArray.splice(round - 1, 1, idx);
+      setUserAnswer(newArray);
     },
-    [userAnswer]
+    [userAnswer, round]
   );
   return (
     <Stack spacing={4}>
@@ -44,7 +42,7 @@ const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
           key={idx}
           as={Button}
           variant="question"
-          onClick={updateAnswer(idx)}
+          onClick={setAnswer(idx)}
         >
           <LinkOverlay as={RouterLink} to={nextUrl}>
             {answer}

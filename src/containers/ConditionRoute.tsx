@@ -10,14 +10,12 @@ export const ConditionRoute: FC<RouteRequireProps> = ({
   failed,
   children,
   ...routeProps
-}) => {
-  return (
-    <Route
-      {...routeProps}
-      render={props => {
-        if (condition(props)) return <>{children}</>;
-        else return <>{failed}</>;
-      }}
-    />
-  );
-};
+}) => (
+  <Route
+    {...routeProps}
+    render={props => {
+      if (condition(props)) return <>{children}</>;
+      else return <>{failed}</>;
+    }}
+  />
+);

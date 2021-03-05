@@ -52,6 +52,6 @@ export default function useShare({
       },
     }),
 
-    [requestUrl]
+    [requestUrl, facebookAppID]
   );
 }
