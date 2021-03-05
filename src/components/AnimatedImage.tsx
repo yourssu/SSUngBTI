@@ -13,7 +13,7 @@ const AnimatedImage: FC<ImageProps> = props => (
         repeatType: "reverse",
       }}
     >
-      <Image border="none" {...props} />
+      <Image {...props} />
     </motion.div>
   </Box>
 );

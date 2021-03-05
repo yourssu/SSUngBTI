@@ -46,6 +46,7 @@ export const Home: FC<StackProps> = props => {
             boxSize={64}
             objectFit="cover"
             m="auto"
+            fallback={<Box w={64} h={64} m="auto" />}
           />
         </AnimatePresence>
       </Box>
