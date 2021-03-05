@@ -1,35 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="<%= webpackConfig.output.publicPath %>img/open.png"
+    />
+    <link rel="icon" href="<%= webpackConfig.output.publicPath %>favicon.svg" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <link rel="icon" href="<%= webpackConfig.output.publicPath %>favicon.svg">
-  
-  <title><%= htmlWebpackPlugin.options.title %></title>
-  <meta name="title" content="<%= htmlWebpackPlugin.options.title %>" />
-  <meta name="keywords" content="슝슝이, 슝슝이 테스트, MBTI, MBTI 테스트, 유어슈, 그라운드, 숭실, 숭실대, 숭실대 MBTI, SSungBTI, SSung-BTI, 쑹BTI, 숭BTI" />
-  <meta name="description" content="슝슝이로 알아보는 성향 테스트" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="title" content="<%= htmlWebpackPlugin.options.title %>" />
+    <meta
+      name="keywords"
+      content="슝슝이, 슝슝이 테스트, MBTI, MBTI 테스트, 유어슈, 그라운드, 숭실, 숭실대, 숭실대 MBTI, SSungBTI, SSung-BTI, 쑹BTI, 숭BTI"
+    />
+    <meta name="description" content="슝슝이로 알아보는 성향 테스트" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ko_KR" />
-  <meta property="og:url" content="<%= htmlWebpackPlugin.options.url %>" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.image %>" />
-  <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>">
-  <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:url" content="<%= htmlWebpackPlugin.options.url %>" />
+    <meta
+      property="og:image"
+      content="<%= htmlWebpackPlugin.options.image %>"
+    />
+    <meta
+      property="og:title"
+      content="<%= htmlWebpackPlugin.options.title %>"
+    />
+    <meta
+      property="og:description"
+      content="<%= htmlWebpackPlugin.options.description %>"
+    />
 
-  <meta property="fb:app_id" content="1646991318648798" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.title %>" />
-  <meta name="twitter:url" content="<%= htmlWebpackPlugin.options.url %>" />
-  <meta name="twitter:image" content="<%= htmlWebpackPlugin.options.image %>" />
-  <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.description %>" />
-</head>
+    <meta property="fb:app_id" content="1646991318648798" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="<%= htmlWebpackPlugin.options.title %>"
+    />
+    <meta name="twitter:url" content="<%= htmlWebpackPlugin.options.url %>" />
+    <meta
+      name="twitter:image"
+      content="<%= htmlWebpackPlugin.options.image %>"
+    />
+    <meta
+      name="twitter:description"
+      content="<%= htmlWebpackPlugin.options.description %>"
+    />
+  </head>
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-</body>
-
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  </body>
 </html>
