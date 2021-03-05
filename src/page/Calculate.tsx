@@ -1,9 +1,9 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { pageVariants, infinityTransition } from "constants/animation";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { motion } from "framer-motion";
 import useMbtiResult from "hooks/useMbtiResult";
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import UserAnswerState from "store/UserAnswerState";
