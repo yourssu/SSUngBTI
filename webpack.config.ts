@@ -66,7 +66,7 @@ const config: webpack.Configuration = {
       template: "src/index.html",
       title: "슝슝이 테스트",
       description: "슝슝이로 알아보는 성향 테스트",
-      image: "https://ssungbti.yourssu.com/img/open.png",
+      image: "https://ssungbti.yourssu.com/img/open.png?v=2",
       url: "https://ssungbti.yourssu.com/",
     }),
     ...mbtiResults.map(
@@ -76,7 +76,7 @@ const config: webpack.Configuration = {
           filename: `result/${mbti.id}/index.html`,
           title: "슝슝이 테스트",
           description: `${mbti.subtitle} ${mbti.title}`,
-          image: `https://ssungbti.yourssu.com/img/${mbti.id}.png`,
+          image: `https://ssungbti.yourssu.com/img/${mbti.id}.png?v=2`,
           url: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
         })
     ),
