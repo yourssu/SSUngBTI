@@ -21,7 +21,7 @@ export const Calculate: FC = () => {
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[1]}.png`;
     const timeout = setTimeout(() => {
       const analytics = firebase.analytics();
-      analytics.setUserProperties({ mbti });
+      analytics.logEvent("mbti_result", { mbti });
       userAnswers.forEach((answer, idx) =>
         analytics.logEvent("selected_answer", { question: idx + 1, answer })
       );
