@@ -61,6 +61,10 @@ const Button = {
 };
 
 export const theme = extendTheme({
+  fonts: {
+    heading: "Noto Sans KR",
+    body: "Noto Sans KR",
+  },
   styles: {
     global: {
       html: {
