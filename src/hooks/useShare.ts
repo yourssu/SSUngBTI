@@ -1,5 +1,14 @@
+import firebase from "firebase/app";
 import { useEffect, useMemo } from "react";
 
+type KakaoShareOption = {
+  templateId: number;
+  templateArgs: {
+    description: string;
+    resultImage: string;
+    resultPath: string;
+  };
+};
 type UseShareResult = {
   shareToKakao: () => void;
   shareToFacebook: () => void;
@@ -9,24 +18,27 @@ type UseShareProps = {
   requestUrl: string;
   kakaoAppKey: string;
   facebookAppID: string;
+  kakaoShareOption: KakaoShareOption;
 };
 export default function useShare({
   requestUrl,
   kakaoAppKey,
   facebookAppID,
+  kakaoShareOption,
 }: UseShareProps): UseShareResult {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) window.Kakao.init(kakaoAppKey);
     return () => window.Kakao.cleanup();
   }, [kakaoAppKey]);
+  const analytics = firebase.analytics();
 
   return useMemo(
     () => ({
       shareToKakao() {
-        if (window.Kakao.isInitialized())
-          window.Kakao.Link.sendScrap({
-            requestUrl,
-          });
+        if (window.Kakao.isInitialized()) {
+          window.Kakao.Link.sendCustom(kakaoShareOption);
+          analytics.logEvent("share_kakao");
+        }
       },
 
       shareToFacebook() {
@@ -38,6 +50,7 @@ export default function useShare({
           "_blank",
           "toolbar=yes, scrollbars=yes,status=no, resizable=yes,left=500, width=600, height=400"
         );
+        analytics.logEvent("share_facebook");
       },
 
       async shareToClipboard() {
@@ -46,12 +59,13 @@ export default function useShare({
             await navigator.clipboard.writeText(requestUrl);
           else throw new Error("클립보드를 사용할 수 없습니다.");
           alert("URL이 복사되었습니다.");
+          analytics.logEvent("share_link");
         } catch (err) {
           alert("오류\n" + err.message);
         }
       },
     }),
 
-    [requestUrl, facebookAppID]
+    [requestUrl, facebookAppID, kakaoShareOption, analytics]
   );
 }

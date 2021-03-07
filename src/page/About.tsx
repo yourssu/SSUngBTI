@@ -66,6 +66,15 @@ export const About: FC<StackProps> = props => (
       >
         {"Tech blog"}
       </Link>
+      <br />
+      <Link
+        size="xs"
+        target="_blank"
+        href="https://apply.yourssu.com/"
+        fontWeight="normal"
+      >
+        {"Recruit"}
+      </Link>
     </Box>
   </Stack>
 );

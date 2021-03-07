@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import useMbtiResult from "hooks/useMbtiResult";
 import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 
 type CompatibilityBoxProps = {
@@ -33,11 +33,24 @@ const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => (
 export const Result: FC = () => {
   const params = useParams<{ mbti: string }>();
   const mbti = useMbtiResult(params.mbti);
-  const { shareToKakao, shareToFacebook, shareToClipboard } = useShare({
-    kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
-    facebookAppID: "1646991318648798",
-    requestUrl: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
-  });
+  const { shareToKakao, shareToFacebook, shareToClipboard } = useShare(
+    useMemo(
+      () => ({
+        kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
+        facebookAppID: "1646991318648798",
+        requestUrl: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
+        kakaoShareOption: {
+          templateId: 49134,
+          templateArgs: {
+            description: `${mbti.subtitle} ${mbti.title}`,
+            resultImage: `https://ssungbti.yourssu.com/img/${mbti.id}.png?v=2`,
+            resultPath: `result/${mbti.id}/`,
+          },
+        },
+      }),
+      [mbti]
+    )
+  );
   return (
     <Box
       as={motion.div}
@@ -53,7 +66,7 @@ export const Result: FC = () => {
             <Heading fontSize="2rem">{mbti.title}</Heading>
           </Box>
 
-          <Box p="0 3rem" bgColor="brandBG">
+          <Box p="0 3rem">
             <AnimatedImage
               w="full"
               m="auto"
@@ -62,7 +75,9 @@ export const Result: FC = () => {
           </Box>
 
           <Box p="0 2rem">
-            <Text fontSize="0.875rem">{mbti.description}</Text>
+            <Text fontSize="0.875rem" style={{ textIndent: "0.7rem" }}>
+              {mbti.description}
+            </Text>
           </Box>
 
           <Box p="0 2rem">
