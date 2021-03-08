@@ -12,7 +12,7 @@ type KakaoShareOption = {
 type UseShareResult = {
   shareToKakao: () => void;
   shareToFacebook: () => void;
-  shareToClipboard: () => void;
+  shareToNative: () => void;
 };
 type UseShareProps = {
   requestUrl: string;
@@ -53,16 +53,24 @@ export default function useShare({
         analytics.logEvent("share_facebook");
       },
 
-      async shareToClipboard() {
+      async shareToNative() {
         try {
-          if (navigator.clipboard)
+          if (navigator.share) {
+            await navigator.share({
+              title: document.title,
+              url: requestUrl,
+            });
+          } else if (navigator.clipboard) {
             await navigator.clipboard.writeText(requestUrl);
-          else throw new Error("클립보드를 사용할 수 없습니다.");
-          alert("URL이 복사되었습니다.");
-          analytics.logEvent("share_link");
+            alert("URL이 복사되었습니다.");
+          } else {
+            throw new Error("클립보드를 사용할 수 없습니다.");
+          }
         } catch (err) {
-          alert("오류\n" + err.message);
+          if (err.name !== "AbortError") alert("오류\n" + err.message);
         }
+
+        analytics.logEvent("share_link");
       },
     }),
 

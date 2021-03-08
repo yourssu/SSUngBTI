@@ -33,7 +33,7 @@ const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => (
 export const Result: FC = () => {
   const params = useParams<{ mbti: string }>();
   const mbti = useMbtiResult(params.mbti);
-  const { shareToKakao, shareToFacebook, shareToClipboard } = useShare(
+  const { shareToKakao, shareToFacebook, shareToNative } = useShare(
     useMemo(
       () => ({
         kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
@@ -112,7 +112,7 @@ export const Result: FC = () => {
                   w="3rem"
                   h="3rem"
                   cursor="pointer"
-                  onClick={shareToClipboard}
+                  onClick={shareToNative}
                 />
               </motion.div>
             </HStack>
