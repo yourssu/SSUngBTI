@@ -67,7 +67,9 @@ export default function useShare({
             throw new Error("클립보드를 사용할 수 없습니다.");
           }
         } catch (err) {
-          if (err.name !== "AbortError") alert("오류\n" + err.message);
+          if (err.name !== "AbortError") {
+            prompt("다음 주소를 복사해서 친구들에게 공유해 주세요", requestUrl);
+          }
         }
 
         analytics.logEvent("share_link");
