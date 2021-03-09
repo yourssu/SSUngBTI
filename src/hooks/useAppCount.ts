@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
-import { appData } from "repo";
+import { getCount } from "repo";
 
 export default function useAppCount(): number {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const unsubscribe = appData.onSnapshot(
-      doc => {
-        setCount(doc.get("count"));
-      },
-      err => {
+    (async () => {
+      try {
+        setCount(await getCount());
+      } catch (err) {
         setCount(-1);
-        console.log(err);
       }
-    );
-    return () => unsubscribe();
+    })();
   }, []);
   return count;
 }

@@ -20,11 +20,15 @@ export const collection = db.collection("SSUngBTI");
 export const appData = collection.doc("app");
 
 export const getCount = async (): Promise<number> => {
-  const data = await appData.get();
-  return data.get("count");
+  const res = await fetch("http://34.105.29.115:8080/counts");
+  const data = await res.json();
+  return data.count;
 };
 
-export const incrementCount = async (): Promise<void> =>
-  appData.update({
-    count: firebase.firestore.FieldValue.increment(1),
-  });
+export const incrementCount = async (): Promise<void> => {
+  try {
+    await fetch("http://34.105.29.115:8080/counts", { method: "post" });
+  } catch (err) {
+    console.log(err);
+  }
+};
