@@ -1,6 +1,5 @@
 import firebase from "firebase/app";
 import "firebase/analytics";
-import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC7v6QyDInnaYEHBME6drulma2MljyTVtE",
@@ -15,19 +14,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-export const db = firebase.firestore();
-export const collection = db.collection("SSUngBTI");
-export const appData = collection.doc("app");
-
 export const getCount = async (): Promise<number> => {
-  const res = await fetch("http://34.105.29.115:8080/counts", { mode: "cors" });
+  const res = await fetch("https://counts.yourssu.com/counts", {
+    mode: "cors",
+  });
   const data = await res.json();
   return data.count;
 };
 
 export const incrementCount = async (): Promise<void> => {
   try {
-    await fetch("http://34.105.29.115:8080/counts", {
+    await fetch("https://counts.yourssu.com/counts", {
       method: "post",
       mode: "cors",
     });
