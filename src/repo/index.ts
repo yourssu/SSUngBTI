@@ -20,14 +20,17 @@ export const collection = db.collection("SSUngBTI");
 export const appData = collection.doc("app");
 
 export const getCount = async (): Promise<number> => {
-  const res = await fetch("http://34.105.29.115:8080/counts");
+  const res = await fetch("http://34.105.29.115:8080/counts", { mode: "cors" });
   const data = await res.json();
   return data.count;
 };
 
 export const incrementCount = async (): Promise<void> => {
   try {
-    await fetch("http://34.105.29.115:8080/counts", { method: "post" });
+    await fetch("http://34.105.29.115:8080/counts", {
+      method: "post",
+      mode: "cors",
+    });
   } catch (err) {
     console.log(err);
   }
