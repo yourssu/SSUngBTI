@@ -9,6 +9,7 @@ export const Counter: FC<CounterProps> = ({ count }) => {
   const countRef = useRef<HTMLSpanElement>();
   const prevVal = useRef<number>(0);
   useEffect(() => {
+    if (count === -1) return;
     const counter = countRef.current;
     const controls = animate(prevVal.current, count, {
       duration: 4,
@@ -32,9 +33,19 @@ export const Counter: FC<CounterProps> = ({ count }) => {
       p={1}
       textAlign="center"
     >
-      {`숭실대학생 `}
-      <span ref={countRef}>{count}</span>
-      {`명 참여중!`}
+      {count === -1 ? (
+        <>
+          {`슝슝이들의 애정을 너무많이 받아 섭폭..`}
+          <br />
+          {`3000명 이상이 사용함!`}
+        </>
+      ) : (
+        <>
+          {`숭실대학생 `}
+          <span ref={countRef}>{count}</span>
+          {`명 참여중!`}
+        </>
+      )}
     </Box>
   );
 };
