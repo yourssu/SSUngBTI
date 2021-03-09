@@ -1,5 +1,6 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { pageVariants, infinityTransition } from "constants/animation";
+import { mbtiResults } from "constants/mbti";
 import firebase from "firebase/app";
 import { motion } from "framer-motion";
 import useMbtiResult from "hooks/useMbtiResult";
@@ -17,8 +18,12 @@ export const Calculate: FC = () => {
 
   useEffect(() => {
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.type}.png`;
-    new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[0]}.png`;
-    new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[1]}.png`;
+    new Image().src = `${process.env.BASE_NAME}img/${
+      mbtiResults.find(r => r.id === mbtiResult.compatibility[0]).type
+    }.png`;
+    new Image().src = `${process.env.BASE_NAME}img/${
+      mbtiResults.find(r => r.id === mbtiResult.compatibility[1]).type
+    }.png`;
     const timeout = setTimeout(() => {
       const analytics = firebase.analytics();
       analytics.logEvent(`mbti_result_${mbtiResult.id}`);
