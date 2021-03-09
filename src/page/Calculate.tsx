@@ -16,16 +16,16 @@ export const Calculate: FC = () => {
   const userAnswers = useRecoilValue(UserAnswerState);
 
   useEffect(() => {
-    new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.id}.png`;
+    new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.type}.png`;
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[0]}.png`;
     new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.compatibility[1]}.png`;
     const timeout = setTimeout(() => {
       const analytics = firebase.analytics();
-      analytics.logEvent(`mbti_result_${mbti}`);
+      analytics.logEvent(`mbti_result_${mbtiResult.id}`);
       userAnswers.forEach((answer, idx) =>
         analytics.logEvent(`question${idx + 1}_select${answer + 1}`)
       );
-      history.push(`result/${mbti}/`);
+      history.push(`result/${mbtiResult.type}/`);
     }, 2000);
     return () => clearTimeout(timeout);
   }, []);

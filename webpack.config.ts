@@ -73,11 +73,11 @@ const config: webpack.Configuration = {
       mbti =>
         new HtmlWebpackPlugin({
           template: "src/index.html",
-          filename: `result/${mbti.id}/index.html`,
+          filename: `result/${mbti.type}/index.html`,
           title: "슝슝이 테스트",
           description: `${mbti.subtitle} ${mbti.title}`,
-          image: `https://ssungbti.yourssu.com/img/${mbti.id}.png?v=2`,
-          url: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
+          image: `https://ssungbti.yourssu.com/img/${mbti.type}.png`,
+          url: `https://ssungbti.yourssu.com/result/${mbti.type}/`,
         })
     ),
   ].filter(Boolean),

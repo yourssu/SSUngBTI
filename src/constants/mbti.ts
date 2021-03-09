@@ -23,6 +23,7 @@ export type MbtiType =
 
 export type MbtiResult = {
   id: MbtiType;
+  type: number;
   title: string;
   subtitle: string;
   description: string;
@@ -31,6 +32,7 @@ export type MbtiResult = {
 export const mbtiResults: MbtiResult[] = [
   {
     id: "ISTJ",
+    type: 0,
     title: "로보트 슝슝이",
     subtitle: "카페에서 매번 같은 메뉴 시키는",
     description:
@@ -39,6 +41,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ISFJ",
+    type: 1,
     title: "스윗한 슝슝이",
     subtitle: "직접 만든 쿠키 나눠주는",
     description:
@@ -47,6 +50,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "INFJ",
+    type: 2,
     title: "드리머 슝슝이",
     subtitle: "머리 속이 판타지 세상!",
     description:
@@ -55,6 +59,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "INTJ",
+    type: 3,
     title: "똑똑이 슝슝이",
     subtitle: "공부하러 스스로 동굴 들어간",
     description:
@@ -63,6 +68,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ISTP",
+    type: 4,
     title: "마이웨이 슝슝이",
     subtitle: "유유자적한 혼자 놀기 만렙",
     description:
@@ -71,6 +77,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ISFP",
+    type: 5,
     title: "보름달 슝슝이",
     subtitle: "긍정의 에너지로 세상을 밝히는",
     description:
@@ -79,6 +86,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "INFP",
+    type: 6,
     title: "샤이한 슝슝이",
     subtitle: "튀고 싶은데 튀는 건 싫은",
     description:
@@ -87,6 +95,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "INTP",
+    type: 7,
     title: "고양이 슝슝이",
     subtitle: "생각 좀 하게 나가라냥!",
     description:
@@ -95,6 +104,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ESTP",
+    type: 8,
     title: "탱탱볼 슝슝이",
     subtitle: "어디로 튈 줄 모르는",
     description:
@@ -103,6 +113,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ESFP",
+    type: 9,
     title: "인기쟁이 슝슝이",
     subtitle: "파티 하이라이트를 장식하는",
     description:
@@ -111,6 +122,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ENFP",
+    type: 10,
     title: "분신술 슝슝이",
     subtitle: "제발 가만히 좀 있어!",
     description:
@@ -119,6 +131,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ENTP",
+    type: 11,
     title: "모험가 슝슝이",
     subtitle: "새로운 시작은 늘 설레게 하지",
     description:
@@ -127,6 +140,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ESTJ",
+    type: 12,
     title: "본투비 리더 슝슝이",
     subtitle: "완벽은 내 일상일 뿐!",
     description:
@@ -135,6 +149,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ESFJ",
+    type: 13,
     title: "천사 슝슝이",
     subtitle: "들숨에 칭찬, 날숨에 칭찬",
     description:
@@ -143,6 +158,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ENFJ",
+    type: 14,
     title: "정많은 슝슝이",
     subtitle: "하나 남은 소중한 당근도 주는",
     description:
@@ -151,6 +167,7 @@ export const mbtiResults: MbtiResult[] = [
   },
   {
     id: "ENTJ",
+    type: 15,
     title: "열정봇 슝슝이",
     subtitle: "세상에서 제일 나쁜 해충은 대충!",
     description:

@@ -16,35 +16,42 @@ import useMbtiResult from "hooks/useMbtiResult";
 import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
 import React, { FC, useMemo } from "react";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import { Link as RouterLink, useHistory, useParams } from "react-router-dom";
 
 type CompatibilityBoxProps = {
   mbtiId: MbtiType;
 };
-const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => (
-  <Box textAlign="center">
-    <AnimatedImage src={`${process.env.BASE_NAME}img/${mbtiId}.png`} />
-    <Heading fontSize="0.875rem">
-      {mbtiResults.find(r => r.id === mbtiId).title}
-    </Heading>
-  </Box>
-);
+const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => {
+  const mbti = useMemo(() => mbtiResults.find(r => r.id === mbtiId), [mbtiId]);
+  return (
+    <Box textAlign="center">
+      <AnimatedImage src={`${process.env.BASE_NAME}img/${mbti.type}.png`} />
+      <Heading fontSize="0.875rem">{mbti.title}</Heading>
+    </Box>
+  );
+};
 
 export const Result: FC = () => {
   const params = useParams<{ mbti: string }>();
-  const mbti = useMbtiResult(params.mbti);
+  const history = useHistory();
+  const found = mbtiResults.find(r => r.id === params.mbti.toUpperCase());
+  if (found !== undefined) {
+    history.push(`/result/${found.type}/`);
+    return <></>;
+  }
+  const mbti = useMbtiResult(parseInt(params.mbti));
   const { shareToKakao, shareToFacebook, shareToNative } = useShare(
     useMemo(
       () => ({
         kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
         facebookAppID: "1646991318648798",
-        requestUrl: `https://ssungbti.yourssu.com/result/${mbti.id}/`,
+        requestUrl: `https://ssungbti.yourssu.com/result/${mbti.type}/`,
         kakaoShareOption: {
           templateId: 49134,
           templateArgs: {
             description: `${mbti.subtitle} ${mbti.title}`,
-            resultImage: `https://ssungbti.yourssu.com/img/${mbti.id}.png?v=2`,
-            resultPath: `result/${mbti.id}/`,
+            resultImage: `https://ssungbti.yourssu.com/img/${mbti.type}.png`,
+            resultPath: `result/${mbti.type}/`,
           },
         },
       }),
@@ -70,7 +77,7 @@ export const Result: FC = () => {
             <AnimatedImage
               w="full"
               m="auto"
-              src={`${process.env.BASE_NAME}img/${mbti.id}.png`}
+              src={`${process.env.BASE_NAME}img/${mbti.type}.png`}
             />
           </Box>
 

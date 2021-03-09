@@ -14,7 +14,7 @@ const App: FC = () => {
   const userAnswer = useRecoilValue(UserAnswerState);
   const requireFilledAnswer = useCallback(
     ({ match }: RouteComponentProps<{ round: string }>) => {
-      const round = Number.parseInt(match.params.round) || questions.length;
+      const round = parseInt(match.params.round) || questions.length;
       return (
         round > 0 &&
         round <= questions.length &&
@@ -24,7 +24,11 @@ const App: FC = () => {
     [userAnswer]
   );
   const checkResultPage = ({ match }: RouteComponentProps<{ mbti: string }>) =>
-    mbtiResults.some(r => r.id === match.params.mbti.toUpperCase());
+    mbtiResults.some(
+      r =>
+        r.id === match.params.mbti.toUpperCase() ||
+        r.type === parseInt(match.params.mbti)
+    );
 
   return (
     <Flex direction="column" w="full" m="0 auto" minH="100%" maxW="640px">
