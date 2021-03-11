@@ -1,9 +1,9 @@
 import { Text } from "@chakra-ui/react";
-import { MbtiAtom } from "constants/mbti";
+import { SbtiAtom } from "constants/sbti";
 
 export interface Question {
   content: JSX.Element | string;
-  kind: [MbtiAtom, MbtiAtom];
+  kind: [SbtiAtom, SbtiAtom];
   answers: [string, string, string, string];
 }
 

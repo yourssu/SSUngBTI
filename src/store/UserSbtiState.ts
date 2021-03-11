@@ -1,18 +1,18 @@
-import { EI, isMbtiType, MbtiAtom, MbtiType, PJ, SN, TF } from "constants/mbti";
+import { EI, isSbtiType, SbtiAtom, SbtiType, PJ, SN, TF } from "constants/sbti";
 import questions from "constants/questions";
 import { selector } from "recoil";
 import UserAnswerState from "./UserAnswerState";
 
-type MbtiCount = Map<MbtiAtom, number>;
+type SbtiCount = Map<SbtiAtom, number>;
 
-const UserMbtiState = selector<MbtiType>({
-  key: "UserMbtiState",
+const UserSbtiState = selector<SbtiType>({
+  key: "UserSbtiState",
   get: ({ get }) => {
     const userAnswer = get(UserAnswerState);
-    const answerMBTI: MbtiAtom[] = userAnswer.map(
+    const answerSbti: SbtiAtom[] = userAnswer.map(
       (answer, idx) => questions[idx].kind[answer % 2]
     );
-    const count: MbtiCount = new Map([
+    const count: SbtiCount = new Map([
       ["E", 0],
       ["I", 0],
       ["S", 0],
@@ -22,14 +22,14 @@ const UserMbtiState = selector<MbtiType>({
       ["P", 0],
       ["J", 0],
     ]);
-    answerMBTI.forEach(answer => count.set(answer, count.get(answer) + 1));
+    answerSbti.forEach(answer => count.set(answer, count.get(answer) + 1));
     const ei: EI = count.get("E") > count.get("I") ? "E" : "I";
     const sn: SN = count.get("S") > count.get("N") ? "S" : "N";
     const tf: TF = count.get("T") > count.get("F") ? "T" : "F";
     const pj: PJ = count.get("P") > count.get("J") ? "P" : "J";
     const result = `${ei}${sn}${tf}${pj}`;
-    if (isMbtiType(result)) return result;
+    if (isSbtiType(result)) return result;
     else throw Error("알수없는 성격유형");
   },
 });
-export default UserMbtiState;
+export default UserSbtiState;

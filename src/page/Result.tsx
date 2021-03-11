@@ -10,52 +10,52 @@ import {
 } from "@chakra-ui/react";
 import AnimatedImage from "components/AnimatedImage";
 import { pageVariants, shakeAnimation } from "constants/animation";
-import { mbtiResults, MbtiType } from "constants/mbti";
+import { sbtiResults, SbtiType } from "constants/sbti";
 import { AnimatePresence, motion } from "framer-motion";
-import useMbtiResult from "hooks/useMbtiResult";
+import useSbtiResult from "hooks/useSbtiResult";
 import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
 import React, { FC, useMemo } from "react";
 import { Link as RouterLink, useHistory, useParams } from "react-router-dom";
 
 type CompatibilityBoxProps = {
-  mbtiId: MbtiType;
+  sbtiId: SbtiType;
 };
-const CompatibilityBox: FC<CompatibilityBoxProps> = ({ mbtiId }) => {
-  const mbti = useMemo(() => mbtiResults.find(r => r.id === mbtiId), [mbtiId]);
+const CompatibilityBox: FC<CompatibilityBoxProps> = ({ sbtiId }) => {
+  const sbti = useMemo(() => sbtiResults.find(r => r.id === sbtiId), [sbtiId]);
   return (
     <Box textAlign="center">
-      <AnimatedImage src={`${process.env.BASE_NAME}img/${mbti.type}.png`} />
-      <Heading fontSize="0.875rem">{mbti.title}</Heading>
+      <AnimatedImage src={`${process.env.BASE_NAME}img/${sbti.type}.png`} />
+      <Heading fontSize="0.875rem">{sbti.title}</Heading>
     </Box>
   );
 };
 
 export const Result: FC = () => {
-  const params = useParams<{ mbti: string }>();
+  const params = useParams<{ sbti: string }>();
   const history = useHistory();
-  const found = mbtiResults.find(r => r.id === params.mbti.toUpperCase());
+  const found = sbtiResults.find(r => r.id === params.sbti.toUpperCase());
   if (found !== undefined) {
     history.push(`/result/${found.type}/`);
     return <></>;
   }
-  const mbti = useMbtiResult(parseInt(params.mbti));
+  const sbti = useSbtiResult(parseInt(params.sbti));
   const { shareToKakao, shareToFacebook, shareToNative } = useShare(
     useMemo(
       () => ({
         kakaoAppKey: "198aa41f0b5781d5a78ee6af2ba40e24",
         facebookAppID: "1646991318648798",
-        requestUrl: `https://ssungbti.yourssu.com/result/${mbti.type}/`,
+        requestUrl: `https://ssungbti.yourssu.com/result/${sbti.type}/`,
         kakaoShareOption: {
           templateId: 49134,
           templateArgs: {
-            description: `${mbti.subtitle} ${mbti.title}`,
-            resultImage: `https://ssungbti.yourssu.com/img/${mbti.type}.png`,
-            resultPath: `result/${mbti.type}/`,
+            description: `${sbti.subtitle} ${sbti.title}`,
+            resultImage: `https://ssungbti.yourssu.com/img/${sbti.type}.png`,
+            resultPath: `result/${sbti.type}/`,
           },
         },
       }),
-      [mbti]
+      [sbti]
     )
   );
   return (
@@ -69,29 +69,29 @@ export const Result: FC = () => {
       <AnimatePresence initial={true}>
         <Stack spacing="2.813rem">
           <Box textAlign="center">
-            <Heading fontSize="1.25rem">{mbti.subtitle}</Heading>
-            <Heading fontSize="2rem">{mbti.title}</Heading>
+            <Heading fontSize="1.25rem">{sbti.subtitle}</Heading>
+            <Heading fontSize="2rem">{sbti.title}</Heading>
           </Box>
 
           <Box p="0 3rem">
             <AnimatedImage
               w="full"
               m="auto"
-              src={`${process.env.BASE_NAME}img/${mbti.type}.png`}
+              src={`${process.env.BASE_NAME}img/${sbti.type}.png`}
             />
           </Box>
 
           <Box p="0 2rem">
             <Text fontSize="0.875rem" style={{ textIndent: "0.7rem" }}>
-              {mbti.description}
+              {sbti.description}
             </Text>
           </Box>
 
           <Box p="0 2rem">
             <Heading fontSize="1rem">{"단짝친구"}</Heading>
             <HStack spacing="1rem">
-              <CompatibilityBox mbtiId={mbti.compatibility[0]} />
-              <CompatibilityBox mbtiId={mbti.compatibility[1]} />
+              <CompatibilityBox sbtiId={sbti.compatibility[0]} />
+              <CompatibilityBox sbtiId={sbti.compatibility[1]} />
             </HStack>
           </Box>
 
@@ -126,7 +126,7 @@ export const Result: FC = () => {
           </Box>
 
           <Box p="0 1rem">
-            <LinkBox as={Button} w="full" variant="mbti_reset">
+            <LinkBox as={Button} w="full" variant="sbti_reset">
               <LinkOverlay as={RouterLink} to="/">
                 {"테스트 다시하기"}
               </LinkOverlay>

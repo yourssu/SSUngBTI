@@ -1,36 +1,36 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { pageVariants, infinityTransition } from "constants/animation";
-import { mbtiResults } from "constants/mbti";
+import { sbtiResults } from "constants/sbti";
 import firebase from "firebase/app";
 import { motion } from "framer-motion";
-import useMbtiResult from "hooks/useMbtiResult";
+import useSbtiResult from "hooks/useSbtiResult";
 import { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import UserAnswerState from "store/UserAnswerState";
-import UserMbtiState from "store/UserMbtiState";
+import UserSbtiState from "store/UserSbtiState";
 
 export const Calculate: FC = () => {
   const history = useHistory();
-  const mbti = useRecoilValue(UserMbtiState);
-  const mbtiResult = useMbtiResult(mbti);
+  const sbti = useRecoilValue(UserSbtiState);
+  const sbtiResult = useSbtiResult(sbti);
   const userAnswers = useRecoilValue(UserAnswerState);
 
   useEffect(() => {
-    new Image().src = `${process.env.BASE_NAME}img/${mbtiResult.type}.png`;
+    new Image().src = `${process.env.BASE_NAME}img/${sbtiResult.type}.png`;
     new Image().src = `${process.env.BASE_NAME}img/${
-      mbtiResults.find(r => r.id === mbtiResult.compatibility[0]).type
+      sbtiResults.find(r => r.id === sbtiResult.compatibility[0]).type
     }.png`;
     new Image().src = `${process.env.BASE_NAME}img/${
-      mbtiResults.find(r => r.id === mbtiResult.compatibility[1]).type
+      sbtiResults.find(r => r.id === sbtiResult.compatibility[1]).type
     }.png`;
     const timeout = setTimeout(() => {
       const analytics = firebase.analytics();
-      analytics.logEvent(`mbti_result_${mbtiResult.id}`);
+      analytics.logEvent(`mbti_result_${sbtiResult.id}`);
       userAnswers.forEach((answer, idx) =>
         analytics.logEvent(`question${idx + 1}_select${answer + 1}`)
       );
-      history.push(`result/${mbtiResult.type}/`);
+      history.push(`result/${sbtiResult.type}/`);
     }, 2000);
     return () => clearTimeout(timeout);
   }, []);

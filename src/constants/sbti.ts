@@ -2,10 +2,10 @@ export type EI = "E" | "I";
 export type SN = "S" | "N";
 export type TF = "T" | "F";
 export type PJ = "P" | "J";
-export type MbtiAtom = EI | SN | TF | PJ;
-export type MbtiType = `${EI}${SN}${TF}${PJ}`;
+export type SbtiAtom = EI | SN | TF | PJ;
+export type SbtiType = `${EI}${SN}${TF}${PJ}`;
 
-export function isMbtiType(arg: string): arg is MbtiType {
+export function isSbtiType(arg: string): arg is SbtiType {
   return (
     (arg[0] === "E" || arg[0] === "I") &&
     (arg[1] === "S" || arg[1] === "N") &&
@@ -14,15 +14,15 @@ export function isMbtiType(arg: string): arg is MbtiType {
   );
 }
 
-export type MbtiResult = {
-  id: MbtiType;
+export type SbtiResult = {
+  id: SbtiType;
   type: number;
   title: string;
   subtitle: string;
   description: string;
-  compatibility: [MbtiType, MbtiType];
+  compatibility: [SbtiType, SbtiType];
 };
-export const mbtiResults: MbtiResult[] = [
+export const sbtiResults: SbtiResult[] = [
   {
     id: "ISTJ",
     type: 0,

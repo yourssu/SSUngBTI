@@ -53,7 +53,7 @@ export const Home: FC<StackProps> = props => {
       <LinkBox
         as={Button}
         w="full"
-        variant="mbti_start"
+        variant="sbti_start"
         onClick={() => incrementCount()}
       >
         <LinkOverlay as={RouterLink} to="/questions/1">

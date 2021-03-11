@@ -33,7 +33,7 @@ const Button = {
         color: "white",
       },
     },
-    mbti_start: {
+    sbti_start: {
       borderRadius: 2,
       fontSize: "1em",
       bg: "brand",
@@ -45,7 +45,7 @@ const Button = {
         bg: "brand",
       },
     },
-    mbti_reset: {
+    sbti_reset: {
       borderRadius: 2,
       fontSize: "1em",
       bg: "brandBG",

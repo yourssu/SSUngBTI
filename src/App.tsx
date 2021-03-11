@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { Footer, Header } from "components";
-import { mbtiResults } from "constants/mbti";
+import { sbtiResults } from "constants/sbti";
 import questions from "constants/questions";
 import { ConditionRoute } from "containers/ConditionRoute";
 import { AnimatePresence } from "framer-motion";
@@ -23,11 +23,11 @@ const App: FC = () => {
     },
     [userAnswer]
   );
-  const checkResultPage = ({ match }: RouteComponentProps<{ mbti: string }>) =>
-    mbtiResults.some(
+  const checkResultPage = ({ match }: RouteComponentProps<{ sbti: string }>) =>
+    sbtiResults.some(
       r =>
-        r.id === match.params.mbti.toUpperCase() ||
-        r.type === parseInt(match.params.mbti)
+        r.id === match.params.sbti.toUpperCase() ||
+        r.type === parseInt(match.params.sbti)
     );
 
   return (
@@ -59,7 +59,7 @@ const App: FC = () => {
                 </ConditionRoute>
                 <ConditionRoute
                   exact
-                  path="/result/:mbti/"
+                  path="/result/:sbti/"
                   condition={checkResultPage}
                   failed={<Redirect to="/" />}
                 >
