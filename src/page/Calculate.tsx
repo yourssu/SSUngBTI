@@ -12,7 +12,7 @@ import UserMbtiState from "store/UserMbtiState";
 
 export const Calculate: FC = () => {
   const history = useHistory();
-  const mbti = useRecoilValue(UserMbtiState).join("");
+  const mbti = useRecoilValue(UserMbtiState);
   const mbtiResult = useMbtiResult(mbti);
   const userAnswers = useRecoilValue(UserAnswerState);
 

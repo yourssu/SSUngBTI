@@ -3,23 +3,16 @@ export type SN = "S" | "N";
 export type TF = "T" | "F";
 export type PJ = "P" | "J";
 export type MbtiAtom = EI | SN | TF | PJ;
-export type MbtiType =
-  | "ISTJ"
-  | "ISFJ"
-  | "INFJ"
-  | "INTJ"
-  | "ISTP"
-  | "ISFP"
-  | "INFP"
-  | "INTP"
-  | "ESTP"
-  | "ESFP"
-  | "ENFP"
-  | "ENTP"
-  | "ESTJ"
-  | "ESFJ"
-  | "ENFJ"
-  | "ENTJ";
+export type MbtiType = `${EI}${SN}${TF}${PJ}`;
+
+export function isMbtiType(arg: string): arg is MbtiType {
+  return (
+    (arg[0] === "E" || arg[0] === "I") &&
+    (arg[1] === "S" || arg[1] === "N") &&
+    (arg[2] === "T" || arg[2] === "F") &&
+    (arg[3] === "P" || arg[3] === "J")
+  );
+}
 
 export type MbtiResult = {
   id: MbtiType;

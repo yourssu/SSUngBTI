@@ -1,9 +1,9 @@
-import { TargetAndTransition, Variants } from "framer-motion";
+import { TargetAndTransition, Transition, Variants } from "framer-motion";
 
 export const defaultTransition = { duration: 0.2, ease: "easeInOut" };
 
-export const infinityTransition = {
-  loop: Infinity,
+export const infinityTransition: Transition = {
+  repeat: Infinity,
   ease: "linear",
   duration: 1,
 };
