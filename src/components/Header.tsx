@@ -1,5 +1,5 @@
 import { Center, ChakraComponent, Link } from "@chakra-ui/react";
-import { LogoIcon } from "icon";
+import { LogoIcon } from "./icon";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 

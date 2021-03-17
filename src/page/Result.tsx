@@ -14,7 +14,7 @@ import { sbtiResults, SbtiType } from "constants/sbti";
 import { AnimatePresence, motion } from "framer-motion";
 import useSbtiResult from "hooks/useSbtiResult";
 import useShare from "hooks/useShare";
-import { FacebookIcon, KakaoIcon, ShareIcon } from "icon";
+import { FacebookIcon, KakaoIcon, ShareIcon } from "components/icon";
 import React, { FC, useMemo } from "react";
 import { Link as RouterLink, useHistory, useParams } from "react-router-dom";
 
