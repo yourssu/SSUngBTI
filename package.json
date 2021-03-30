@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=\"development\" TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack serve --open --config webpack.config.ts",
     "build": "cross-env NODE_ENV=\"production\" TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack --config webpack.config.ts",
-    "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
+    "deploy": "aws s3 sync ./dist s3://$S3_BUCKET_NAME"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
