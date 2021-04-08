@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Route, RouteComponentProps, RouteProps } from "react-router-dom";
 
-type ConditionRouteProps = RouteProps & {
+type ConditionRouteProps = Omit<RouteProps, "render"> & {
   condition: (props: RouteComponentProps) => boolean;
   failed: React.ReactNode;
 };
