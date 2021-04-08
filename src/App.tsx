@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import { Footer, Header } from "components";
 import { sbtiResults } from "constants/sbti";
 import questions from "constants/questions";
-import { ConditionRoute } from "containers/ConditionRoute";
+import { ConditionRoute } from "components/ConditionRoute";
 import { AnimatePresence } from "framer-motion";
 import { About, Calculate, Home, Question, Result } from "page";
 import React, { FC, useCallback } from "react";
@@ -13,12 +13,12 @@ import UserAnswerState from "store/UserAnswerState";
 const App: FC = () => {
   const userAnswer = useRecoilValue(UserAnswerState);
   const requireFilledAnswer = useCallback(
-    ({ match }: RouteComponentProps<{ round: string }>) => {
-      const round = parseInt(match.params.round) || questions.length;
+    ({ match }: RouteComponentProps<{ step: string }>) => {
+      const step = parseInt(match.params.step) || questions.length;
       return (
-        round > 0 &&
-        round <= questions.length &&
-        userAnswer.slice(0, round - 1).every(val => val !== undefined)
+        step > 0 &&
+        step <= questions.length &&
+        userAnswer.slice(0, step - 1).every(val => val !== undefined)
       );
     },
     [userAnswer]
@@ -31,7 +31,7 @@ const App: FC = () => {
     );
 
   return (
-    <Flex direction="column" w="full" m="0 auto" minH="100%" maxW="640px">
+    <Flex direction="column" w="full" m="0 auto" minH="full" maxW="640px">
       <Box flexGrow={1} w="full" alignSelf="center">
         <Header mb={12} />
         <Route
@@ -43,7 +43,7 @@ const App: FC = () => {
                 </Route>
                 <ConditionRoute
                   exact
-                  path="/questions/:round"
+                  path="/questions/:step"
                   condition={requireFilledAnswer}
                   failed={<Redirect to="/" />}
                 >

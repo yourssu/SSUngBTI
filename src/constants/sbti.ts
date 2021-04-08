@@ -5,15 +5,6 @@ export type PJ = "P" | "J";
 export type SbtiAtom = EI | SN | TF | PJ;
 export type SbtiType = `${EI}${SN}${TF}${PJ}`;
 
-export function isSbtiType(arg: string): arg is SbtiType {
-  return (
-    (arg[0] === "E" || arg[0] === "I") &&
-    (arg[1] === "S" || arg[1] === "N") &&
-    (arg[2] === "T" || arg[2] === "F") &&
-    (arg[3] === "P" || arg[3] === "J")
-  );
-}
-
 export type SbtiResult = {
   id: SbtiType;
   type: number;

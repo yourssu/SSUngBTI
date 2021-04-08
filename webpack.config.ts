@@ -51,6 +51,7 @@ const config: webpack.Configuration = {
     new DefinePlugin({
       "process.env": {
         BASE_NAME: JSON.stringify(process.env.BASE_NAME ?? "/"),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
     new CopyWebpackPlugin({ patterns: [{ from: "src/static" }] }),
@@ -80,7 +81,7 @@ const config: webpack.Configuration = {
           url: `https://ssungbti.yourssu.com/result/${sbti.type}/`,
         })
     ),
-  ].filter(Boolean),
+  ],
   devServer: {
     hot: true,
     contentBase: "dist",

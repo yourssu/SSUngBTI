@@ -16,24 +16,24 @@ import { useRecoilState } from "recoil";
 import UserAnswerState from "store/UserAnswerState";
 
 type QuestionButtonGroupProps = {
-  round: number;
+  step: number;
   question: QuestionObj;
   isLast: boolean;
 };
 const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
   question,
-  round,
+  step,
   isLast,
 }) => {
-  const nextUrl = isLast ? "/calculate" : `/questions/${round + 1}`;
+  const nextUrl = isLast ? "/calculate" : `/questions/${step + 1}`;
   const [userAnswer, setUserAnswer] = useRecoilState(UserAnswerState);
   const setAnswer = useCallback(
     (idx: number) => () => {
       const newArray = userAnswer.slice();
-      newArray.splice(round - 1, 1, idx);
+      newArray.splice(step - 1, 1, idx);
       setUserAnswer(newArray);
     },
-    [userAnswer, round]
+    [userAnswer, step]
   );
   return (
     <Stack spacing={4}>
@@ -54,8 +54,8 @@ const QuestionButtonGroup: FC<QuestionButtonGroupProps> = ({
 };
 
 export const Question: FC<BoxProps> = props => {
-  const params = useParams<{ round: string }>();
-  const round = Number.parseInt(params.round);
+  const params = useParams<{ step: string }>();
+  const step = Number.parseInt(params.step);
   return (
     <Box
       as={motion.div}
@@ -67,15 +67,15 @@ export const Question: FC<BoxProps> = props => {
       {...props}
     >
       <Box minH={48}>
-        <Heading fontSize="1.125em">{`${round} / ${questions.length}`}</Heading>
+        <Heading fontSize="1.125em">{`${step} / ${questions.length}`}</Heading>
         <Heading fontWeight="normal" fontSize="1.5em">
-          {questions[round - 1].content}
+          {questions[step - 1].content}
         </Heading>
       </Box>
       <QuestionButtonGroup
-        question={questions[round - 1]}
-        round={round}
-        isLast={round === questions.length}
+        question={questions[step - 1]}
+        step={step}
+        isLast={step === questions.length}
       />
     </Box>
   );

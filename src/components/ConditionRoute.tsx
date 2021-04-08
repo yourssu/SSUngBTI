@@ -3,7 +3,7 @@ import { Route, RouteComponentProps, RouteProps } from "react-router-dom";
 
 type ConditionRouteProps = RouteProps & {
   condition: (props: RouteComponentProps) => boolean;
-  failed: JSX.Element;
+  failed: React.ReactNode;
 };
 export const ConditionRoute: FC<ConditionRouteProps> = ({
   condition,
@@ -13,9 +13,6 @@ export const ConditionRoute: FC<ConditionRouteProps> = ({
 }) => (
   <Route
     {...routeProps}
-    render={props => {
-      if (condition(props)) return <>{children}</>;
-      else return <>{failed}</>;
-    }}
+    render={props => (condition(props) ? children : failed)}
   />
 );

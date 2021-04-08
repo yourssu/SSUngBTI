@@ -2,7 +2,6 @@ import { extendTheme } from "@chakra-ui/react";
 
 const Link = {
   baseStyle: {
-    transition: `all 0.15s ease-out`,
     cursor: "pointer",
     textDecoration: "underline",
     outline: "none",
