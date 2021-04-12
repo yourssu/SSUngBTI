@@ -1,5 +1,6 @@
-import questions from "constants/questions";
 import { atom } from "recoil";
+
+import questions from "constants/questions";
 
 const UserAnswerState = atom<number[]>({
   key: "UserAnswerState",

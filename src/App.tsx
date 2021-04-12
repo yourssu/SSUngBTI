@@ -1,13 +1,14 @@
 import { Box, Flex } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
+import { Switch, Route, RouteComponentProps, Redirect } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+
 import { Footer, Header } from "components";
 import { sbtiResults } from "constants/sbti";
 import questions from "constants/questions";
 import { ConditionRoute } from "components/ConditionRoute";
-import { AnimatePresence } from "framer-motion";
-import { About, Calculate, Home, Question, Result } from "page";
+import { About, Calculate, Home, Question, Result } from "pages";
 import React, { FC, useCallback } from "react";
-import { Switch, Route, RouteComponentProps, Redirect } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import UserAnswerState from "store/UserAnswerState";
 
 const App: FC = () => {

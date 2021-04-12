@@ -8,8 +8,7 @@ import {
   StackProps,
   Text,
 } from "@chakra-ui/react";
-import { Counter } from "components";
-import AnimatedImage from "components/AnimatedImage";
+import { Counter, AnimatedImage } from "components";
 import { pageVariants } from "constants/animation";
 import { AnimatePresence, motion } from "framer-motion";
 import useAppCount from "hooks/useAppCount";

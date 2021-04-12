@@ -1,6 +1,7 @@
+import { selector } from "recoil";
+
 import { EI, SbtiAtom, SbtiType, PJ, SN, TF } from "constants/sbti";
 import questions from "constants/questions";
-import { selector } from "recoil";
 import UserAnswerState from "./UserAnswerState";
 
 type SbtiCount = Map<SbtiAtom, number>;
