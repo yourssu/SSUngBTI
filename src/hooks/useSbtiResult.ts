@@ -1,5 +1,6 @@
-import { SbtiResult, sbtiResults } from "constants/sbti";
 import { useMemo } from "react";
+
+import { SbtiResult, sbtiResults } from "constants/sbti";
 
 export default function useSbtiResult(
   sbtiIdOrType: string | number

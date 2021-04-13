@@ -1,6 +1,7 @@
-import { EI, isSbtiType, SbtiAtom, SbtiType, PJ, SN, TF } from "constants/sbti";
-import questions from "constants/questions";
 import { selector } from "recoil";
+
+import { EI, SbtiAtom, SbtiType, PJ, SN, TF } from "constants/sbti";
+import questions from "constants/questions";
 import UserAnswerState from "./UserAnswerState";
 
 type SbtiCount = Map<SbtiAtom, number>;
@@ -27,9 +28,7 @@ const UserSbtiState = selector<SbtiType>({
     const sn: SN = count.get("S") > count.get("N") ? "S" : "N";
     const tf: TF = count.get("T") > count.get("F") ? "T" : "F";
     const pj: PJ = count.get("P") > count.get("J") ? "P" : "J";
-    const result = `${ei}${sn}${tf}${pj}`;
-    if (isSbtiType(result)) return result;
-    else throw Error("알수없는 성격유형");
+    return `${ei}${sn}${tf}${pj}` as const;
   },
 });
 export default UserSbtiState;

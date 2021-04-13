@@ -1,4 +1,5 @@
 import { Text } from "@chakra-ui/react";
+
 import { SbtiAtom } from "constants/sbti";
 
 export interface Question {
@@ -13,9 +14,9 @@ const questions: Question[] = [
     kind: ["S", "N"],
     content: (
       <>
-        처음 숭실대 로고를
+        {"처음 숭실대 로고를"}
         <br />
-        보고 든 생각은?
+        {"보고 든 생각은?"}
       </>
     ),
     answers: [
@@ -41,8 +42,9 @@ const questions: Question[] = [
     kind: ["E", "I"],
     content: (
       <>
-        새터날 버스 안<br />
-        처음 만난 친구에게 당신은?
+        {"새터날 버스 안"}
+        <br />
+        {"처음 만난 친구에게 당신은?"}
       </>
     ),
     answers: [
@@ -57,8 +59,9 @@ const questions: Question[] = [
     kind: ["P", "J"],
     content: (
       <>
-        과제를 진행할 때<br />
-        당신의 모습은?
+        {"과제를 진행할 때"}
+        <br />
+        {"당신의 모습은?"}
       </>
     ),
     answers: [
@@ -101,8 +104,9 @@ const questions: Question[] = [
     content: (
       <>
         <Text fontSize="1rem">
-          돌계에서 노을을 보고 있던 친구가
-          <br />내 생각이 났다며 카톡이 왔다
+          {"돌계에서 노을을 보고 있던 친구가"}
+          <br />
+          {"내 생각이 났다며 카톡이 왔다"}
         </Text>
         {"가장 먼저 든 생각은?"}
       </>
@@ -119,9 +123,9 @@ const questions: Question[] = [
     kind: ["T", "F"],
     content: (
       <>
-        팀플에서 팀원이 과제를
+        {"팀플에서 팀원이 과제를"}
         <br />
-        대충 해 왔을 때 당신은?
+        {"대충 해 왔을 때 당신은?"}
       </>
     ),
     answers: [
@@ -158,9 +162,9 @@ const questions: Question[] = [
     kind: ["S", "N"],
     content: (
       <>
-        친구의 생일선물
+        {"친구의 생일선물"}
         <br />
-        어떤 것을 사줄까?
+        {"어떤 것을 사줄까?"}
       </>
     ),
     answers: [

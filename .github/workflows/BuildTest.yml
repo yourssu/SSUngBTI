@@ -1,16 +1,15 @@
-name: Deploy to AWS S3
+name: Build Test
 
 on:
   pull_request:
-    types: [closed]
-    branches: [master]
+    branches: [develop, master]
+  push:
+    branches: [develop, master]
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-18.04
-    if: github.event.pull_request.merged
-
     steps:
       - name: Checkout this repo
         uses: actions/checkout@master
@@ -24,12 +23,11 @@ jobs:
       - name: Install dependency
         run: yarn install
 
+      - name: Run tests
+        run: yarn test
+
+      - name: Lint
+        run: yarn lint
+
       - name: Build
         run: yarn build
-
-      - name: Deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-        run: yarn deploy
