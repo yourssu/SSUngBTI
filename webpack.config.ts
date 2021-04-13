@@ -84,8 +84,6 @@ const config: webpack.Configuration = {
   ],
   devServer: {
     hot: true,
-    contentBase: "dist",
-    overlay: true,
     historyApiFallback: true,
   },
   devtool: development ? "inline-source-map" : undefined,

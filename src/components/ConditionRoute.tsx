@@ -2,7 +2,9 @@ import React, { FC } from "react";
 import { Route, RouteComponentProps, RouteProps } from "react-router-dom";
 
 type ConditionRouteProps = Omit<RouteProps, "render"> & {
-  condition: (props: RouteComponentProps) => boolean;
+  condition:
+    | ((props: RouteComponentProps) => boolean)
+    | ((props: RouteComponentProps) => React.ReactNode);
   failed: React.ReactNode;
 };
 export const ConditionRoute: FC<ConditionRouteProps> = ({
@@ -13,6 +15,11 @@ export const ConditionRoute: FC<ConditionRouteProps> = ({
 }) => (
   <Route
     {...routeProps}
-    render={props => (condition(props) ? children : failed)}
+    render={props => {
+      const condResult = condition(props);
+      if (typeof condResult === "boolean")
+        return condResult ? children : failed;
+      else return condResult;
+    }}
   />
 );

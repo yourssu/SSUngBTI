@@ -8,7 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import AnimatedImage from "components/AnimatedImage";
+import { AnimatedImage } from "components";
 import { pageVariants, shakeAnimation } from "constants/animation";
 import { sbtiResults, SbtiType } from "constants/sbti";
 import { AnimatePresence, motion } from "framer-motion";
@@ -16,7 +16,7 @@ import useSbtiResult from "hooks/useSbtiResult";
 import useShare from "hooks/useShare";
 import { FacebookIcon, KakaoIcon, ShareIcon } from "components/icon";
 import React, { FC, useMemo } from "react";
-import { Link as RouterLink, useHistory, useParams } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
 
 type CompatibilityBoxProps = {
   sbtiId: SbtiType;
@@ -33,12 +33,6 @@ const CompatibilityBox: FC<CompatibilityBoxProps> = ({ sbtiId }) => {
 
 export const Result: FC = () => {
   const params = useParams<{ sbti: string }>();
-  const history = useHistory();
-  const found = sbtiResults.find(r => r.id === params.sbti.toUpperCase());
-  if (found !== undefined) {
-    history.push(`/result/${found.type}/`);
-    return <></>;
-  }
   const sbti = useSbtiResult(parseInt(params.sbti));
   const { shareToKakao, shareToFacebook, shareToNative } = useShare(
     useMemo(

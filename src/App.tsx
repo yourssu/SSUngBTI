@@ -24,12 +24,16 @@ const App: FC = () => {
     },
     [userAnswer]
   );
-  const checkResultPage = ({ match }: RouteComponentProps<{ sbti: string }>) =>
-    sbtiResults.some(
-      r =>
-        r.id === match.params.sbti.toUpperCase() ||
-        r.type === parseInt(match.params.sbti)
+  const checkResultPage = ({
+    match,
+  }: RouteComponentProps<{ sbti: string }>) => {
+    const foundSbtiById = sbtiResults.find(
+      r => r.id === match.params.sbti.toUpperCase()
     );
+    if (foundSbtiById !== undefined)
+      return <Redirect to={`/result/${foundSbtiById.type}`} />;
+    return sbtiResults.some(r => r.type === parseInt(match.params.sbti));
+  };
 
   return (
     <Flex direction="column" w="full" m="0 auto" minH="full" maxW="640px">
