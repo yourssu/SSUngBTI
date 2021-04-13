@@ -33,9 +33,9 @@ export const Home: FC<StackProps> = props => {
     >
       <Box textAlign="center">
         <Heading as="h1" fontSize="2em">
-          {"슝슝이 테스트"}
+          {"뿌슝이 테스트"}
         </Heading>
-        <Text fontSize="1em">{"슝슝이로 알아보는 성향테스트"}</Text>
+        <Text fontSize="1em">{"뿌슝이로 알아보는 성향테스트"}</Text>
       </Box>
       <Box w="full">
         <Counter count={count} />

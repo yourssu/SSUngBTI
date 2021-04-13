@@ -65,8 +65,8 @@ const config: webpack.Configuration = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      title: "슝슝이 테스트",
-      description: "슝슝이로 알아보는 성향 테스트",
+      title: "뿌슝이 테스트",
+      description: "뿌슝이로 알아보는 성향 테스트",
       image: "https://ssungbti.yourssu.com/img/open.png?v=2",
       url: "https://ssungbti.yourssu.com/",
     }),
@@ -75,7 +75,7 @@ const config: webpack.Configuration = {
         new HtmlWebpackPlugin({
           template: "src/index.html",
           filename: `result/${sbti.type}/index.html`,
-          title: "슝슝이 테스트",
+          title: "뿌슝이 테스트",
           description: `${sbti.subtitle} ${sbti.title}`,
           image: `https://ssungbti.yourssu.com/img/${sbti.type}.png`,
           url: `https://ssungbti.yourssu.com/result/${sbti.type}/`,
